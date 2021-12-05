@@ -12,6 +12,10 @@ This is a backup of my Wordpress blog. (http://lf.estontorise.hu/)
 `
 const template = readFileSync('template.html')
 for (const post of posts) {
+
+    if (post['wp:post_type'] != 'post')
+        continue;
+
     let content: string = template.toString()
     for (const key of Object.keys(post)) {
         content = content.split(`{{${key}}}`).join(post[key])

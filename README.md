@@ -16,14 +16,6 @@ This is a backup of my Wordpress blog. (http://lf.estontorise.hu/)
 
 [LoveMachine Inc. - nyílt forrás, "szeretet", és egy 21. századi "munkahely"](https://thebojda.github.io/my-wordpress-blog/posts/160.html)
 
-[ketres1](https://thebojda.github.io/my-wordpress-blog/posts/261.html)
-
-[ketres2](https://thebojda.github.io/my-wordpress-blog/posts/262.html)
-
-[ketres3](https://thebojda.github.io/my-wordpress-blog/posts/263.html)
-
-[ketres4](https://thebojda.github.io/my-wordpress-blog/posts/264.html)
-
 [AngularJS](https://thebojda.github.io/my-wordpress-blog/posts/366.html)
 
 [Demokrácia (én így csinálnám)](https://thebojda.github.io/my-wordpress-blog/posts/461.html)
