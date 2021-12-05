@@ -17,7 +17,7 @@ for (const post of posts) {
         content = content.split(`{{${key}}}`).join(post[key])
     }
     writeFileSync(`posts/${post['wp:post_id']}.html`, content)
-    readme += `[${post.title}](https://thebojda.github.io/my-wordpress-blog/posts/${post['wp:post_id']}.html)\n`
+    readme += `[${post.title}](https://thebojda.github.io/my-wordpress-blog/posts/${post['wp:post_id']}.html)\n\n`
 }
 
 writeFileSync('README.md', readme)
