@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="hu"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang="hu"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="hu"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="hu">
+<!--<![endif]-->
+
+<head>
+	<meta charset="utf-8">
+	<title>Feltétel nélküli alapjövedelem (én így csinálnám) - Gondolatok (Fazekas László blogja)</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="keywords" content="Android, Android fejlesztő, Android programozó, Gondolatok, Fazekas László, PHP, PHP fejlesztő, J2EE, Java, J2EE fejelsztő, szabadúszó, programozó" />
+	<meta name="description" content="Gondolatok - Fazekas László blogja" />
+	<meta name="robots" content="index, follow, max-video-preview:-1, max-snippet:-1, max-image-preview:large" />
+	<meta property="og:locale" content="hu_HU" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="Feltétel nélküli alapjövedelem (én így csinálnám)" />
+	<meta property="og:description" content="Feltétel nélküli alapjövedelem (én így csinálnám)" />
+	<meta property="og:site_name" content="Gondolatok (Fazekas László blogja)" />
+	<meta property="article:published_time" content="2014-01-25 23:15:59" />
+	<meta property="article:modified_time" content="2014-01-26 11:19:54" />
+	<link rel="stylesheet" href="../assets/css/bootstrap.css">
+	<link rel="stylesheet" href="../assets/css/bootstrap-responsive.css">
+	<link rel="stylesheet" href="../assets/css/app.css">
+	<style>
+		.blog-title {
+			opacity: 0.1;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			width: 100%;
+			-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";
+			filter: alpha(opacity=10);
+		}
+
+		.blog-title h1 {
+			font-size: 30px;
+			line-height: 30px;
+			color: #000;
+		}
+
+		.blog-title p {
+			font-size: 20px;
+			color: #000;
+		}
+
+		.blog-content {
+			color: rgb(77, 77, 77);
+			font-family: 'proxima-nova', sans-serif;
+			font-weight: 500;
+			line-height: 1.5em;
+			font-size: 16px;
+		}
+
+		.blog-content h2 a {
+			font-size: 25px;
+			line-height: 25px;
+			color: rgb(58, 58, 58);
+			font-weight: 600;
+		}
+
+		.blog-content h1 {
+			font-size: 30px;
+			line-height: 30px;
+			color: rgb(58, 58, 58);
+			font-weight: 600;
+		}
+
+		.widget {
+			background-color: #eee;
+			padding: 5px;
+			margin-top: 10px;
+		}
+
+		.widget h3 {
+			font-size: 14px;
+			color: #999;
+		}
+
+		.widget h3 a {
+			font-size: 14px;
+			color: #999;
+			text-decoration: none;
+		}
+
+		.widget .rsswidget img {
+			display: none;
+		}
+
+		#google_translate_element select {
+			width: 180px;
+		}
+	</style>
+</head>
+
+<body class="post-template-default single single-post postid-727 single-format-standard 727">
+	<header role="banner">
+		<div class="blog-title">
+			<div style="background-color: #bbb; padding-left: 30px; padding-bottom: 2px; padding-top: 2px;">
+				<h1>Gondolatok (Fazekas László blogja)</h1>
+				<p>Bármi ami épp folgalkoztat</p>
+			</div>
+		</div>
+	</header>
+	<div class="wrap container" role="document">
+		<div class="content row blog-content">
+			<div class="span2 hidden-phone hidden-tablet" style="margin-left: 70px;"></div>
+			<div class="span7" style="margin-left: 0px;" role="main">
+				<article class="post-727 post type-post status-publish format-standard hentry category-nincs-kategorizalva">
+					<header>
+						<h1 class="entry-title">Feltétel nélküli alapjövedelem (én így csinálnám)</h1>
+					</header>
+					<div class="entry-content">
+						Nemrégiben bejárta a magyar sajtót egy elsőre meglehetősen vadnak tűnő kezdeményezés, amely a <a title="LÉT" href="http://255075.hu/" target="_blank">LÉT</a> nevet kapta. A kezdeményezés lényege, hogy minden magyar állampolgár alanyi jogon kapjon 50 000 Ft-ot az államtól. A gyermekek 25 000-et, míg a terhes kismamák 75 000 Ft-ot. Habár az ötlet elég vadnak tűnik, egyáltalán nem újkeletű. A <a title="feltétel nélküli alapjövedelem" href="http://hu.wikipedia.org/wiki/Felt%C3%A9tel_n%C3%A9lk%C3%BCli_alapj%C3%B6vedelem" target="_blank">feltétel nélküli alapjövedelem</a> gondolata már sokszor, sok formában felütötte a fejét. Egy időben nekem is megfordult a fejemben egy ilyen rendszer gondolata, bár nálam a <a title="Zeitgeist Addandum" href="http://lf.estontorise.hu/archives/75" target="_blank">Zeitgeist Addandum</a>, azon belül is a <a title="Venus Project" href="http://www.thevenusproject.com/" target="_blank">Venus Project</a> ötlete szolgáltatta az alapot. Hogy ez a két dolog hogy ér össze, az majd a bejegyzés végére kiderül, de hogy ne szaladjunk előre, írnék pár gondolatot a LÉT-ről.
+
+<strong>A LÉT kezdeményezés</strong>
+
+Szóval ahogy már említettem, a LÉT lényege hogy mindenkinek alanyi jogon járjon pénz az államtól. Amikor valaki ilyet olvas, valószínűleg a kommunizmus eszméje ugrik be neki először, és úgy vélem, ez egyben az első számú ok, amiért az emberek egy jó része eleve negatívan viszonyul a gondolathoz. Pedig itt kommunizmusról szó sincs. Az alapjövedelem gondolata sokkal inkább tekinthető a szociális rendszer újragondolásának. A fejlett társadalmak most is rendelkeznek valamilyen szociális rendszerrel. Az állam adó formájában összegyűjti a pénzt, amit aztán valamilyen elvek szerint újra szétoszt az emberek között, például segélyek, családi pótlék, és hasonlók formájában. A LÉT ezzel szemben ennek a rendszernek egy végtelenül leegyszerűsített formája. Itt az összegyűlt pénzt egyszerűen egyenlően szétdobják az emberek közt megkülönböztetés nélkül. Így például nincs probléma abból, hogy az adott állampolgár jogosan, vagy jogtalanul kapja a juttatást, és bürokratikus elosztó rendszer is feleslegessé válik. Egyszerűen havonta ki kell utalni mindenkinek a pénzt. De miért is jó ez? Az elsődleges alapgondolat talán az erkölcsi indíttatás. Az, hogy minden embernek alanyi jogon járjon a méltóságteljes élet, ne legyenek éhezők, mindenkinek legyen fedél a feje felett, ne legyenek mély szegénységben élők. Ez legyen tehát az alap minden állampolgár számára. Szép gondolat, de vajon van ennek realitása? Itt azért már megoszlanak a vélemények. A LÉT támogatói szerint ez a költségvetésből összehozható, ha ezzel egy időben megszüntetünk más támogatásokat, segélyeket, faragunk a járulékos költségekből, stb. Tehát a jelenlegi rendszer átszervezésével a LÉT (majdnem) megvalósítható. Azért csak majdnem, mert azért az optimista számítások esetén is egy pár száz milliárd hiányzik, ami azért nem olyan kis pénz. És ha ez mindenkinek ingyen jár, ki fog dolgozni? Ez is egy jó kérdés, amire sokan sokféleképpen válaszolnak, de azért mindenképp ott van az a scenario, hogy az emberek tömegesen hagyják ott az utált munkákat, ami komoly problémákat okozhat a rendszerben. Szóval az én személyes véleményem az, hogy az alapötlet jó, de nem a LÉT az optimális megoldás a problémára.
+
+<strong>Alapjövedelem, ahogy én csinálnám</strong>
+
+Nos, a LÉT-nek mint koncepciónak szerintem a legnagyobb problémája, hogy pénzt juttat az emberekhez, amit azok bármire fordíthatnak, így nem a valódi problémát célozza meg. Ha valaki úgy dönt, akár hónap elején el is ihatja, vagy kártyázhatja a pénzét, így változatlanul az utcára kényszerül. Vagy csak egyszerűen rosszul osztja be, így képtelen lesz jól kijönni a megkapott juttatásból. Ha az alapvető feltételek megteremtése a célunk, akkor az alapvető feltételekre összpontosítva kellene koncentrálni az alapjövedelmet is. Éppen ezért én pénz helyett utalványt, vagy akár valamiféle külön valutát adnék az emberek kezébe. Ezt akár ugyanúgy mágneskártyán kaphatnák meg, mint a fizetésüket, amivel aztán a boltban fizethetnek. Ezt az alapjövedelmet azonban csak az alapszükségletekre lehetne elkölteni. Ételre, rezsire, lakhatásra, esetleg olyan kivételekkel, mint az alap internet kapcsolat, tankönyvek, stb., ami nem fizikai alapszükséglet, de a mai világban szinte nélkülözhetetlen, így az alapvető szükségletekhez sorolhatjuk, mivel e nélkül az ember jelentős hátrányokat szenved. E mellett költhetnénk belőle megújuló energiák felhasználását segítő fejlesztésekre (pl. napelem, napkollektor a házra, stb.), ami tulajdonképpen besorolható a rezsi kategóriába, vagy lakás törlesztő részletre (ez pedig a lakhatás kategória). Az alapjövedelem értékét akár azzal is növelhetné az állam, hogy az így vásárolt termékere nem számol fel áfát. És hogy miért jobb ez mint a LÉT modellje? Egyfelől a pénz így tényleg arra fordítódik, amire szánják, másfelől nem veszíti az értelmét a munka, hiszen a luxusra, a szórakozásra így is elő kellene teremteni a pénzt. Ugyanakkor megszüntetné a nincstelenséget, kihúzná a gödörből a mély szegénységben élőket, és ha kombináljuk az áfamentes termékekkel, akkor talán kevesebb pénzből is biztosítani lehetne a szükséges alapot, így reálisabban ki lehetne gazdálkodni a költségvetésből. Mivel így a munka, a pénzköltés (áfa bevétel), és úgy általában bármilyen adóbevétel a luxushoz kötődne, ezért nagyon leegyszerűsítve azt mondhatnánk, hogy a luxuskiadások fedeznék az alapjövedelmet. Nekem erről informatikusként a webes szolgáltatások általános modellje jut az eszembe, ahol az alapszolgáltatás (vagy szoftver) mindenki számára ingyenes, és csak a prémium szolgáltatásokért kérnek pénzt, ebből fedezve a teljes működést.
+
+<strong>Hogy jön mindehhez a Venus Project?</strong>
+
+A Venus Project egy utópia. A project kiötlői azt hangoztatják, hogy technológiára és megújuló erőforrásokra építve alapvetően minden szükségletünk fedezhető lenne teljesen ingyen. Szükségtelenné válna a munka, és akár a pénz fogalma is. Mikor azon kezdtem gondolkodni, hogy vajon működne-e egy ilyen világ, hogy mivel lehetne vajon motiválni azokat az embereket, akikre a működéshez szükség van, stb. akkor jutott eszembe a fenti modell. Tehát hogy egy ilyen utópisztikus világban is, a mellett, hogy az állam minden embernek biztosítja azt, amire szüksége van, azért szükséges lenne valamiféle pénz fogalom, amiért érdemes dolgozni. A fent leírt modell is valami hasonlót valósítana meg. Azt is gondolom, hogy a technológia fejlődése előrébb mozdíthatná egy ilyen fajta alapjövedelem ügyét, hiszen ha a technológiának köszönhetően olcsóbb energiát (pl. hatékony napelemek), olcsóbb élelmiszereket (pl. robotizált termelés), olcsóbb lakhatást (pl. 3D nyomtatással előállított olcsó házak), stb. tudunk biztosítani, úgy kevesebb pénzt kell az államnak alapjövedelemre fordítania, hiszen kevesebbe kerülne az alapvető, jó életszínvonal biztosítása az emberek számára. De ugyanígy szerintem sokat lehetne spórolni azzal is, ha eltüntetnénk a termelő és a fogyasztó közötti kereskedői láncot. Aki megtermeli az adott élelmiszert (legyen az cég, vagy Józsi bácsi a szomszédból) az közvetlenül árulhatná azt mondjuk a weben. Az emberek pedig otthonról ülve bevásárolhatnának. A napi rendelést futárok hordanák ki összesítve. Így egyfelől nem rakódna rá a termékre a kereskedők haszna, másfelől a szállítások összesítése és az optimális útvonal megválasztása miatt a szétoszló szállítási költség egy főre jutó része minimális lenne. De akinek úgy kényelmesebb, el is sétálhatna a legközelebbi boltba, vagy piacra, hogy kedvére válogasson. Ezt csak egy példának szerettem volna felhozni a technológia és az olcsóbb élet kapcsolatára. De mindennek a fordítottja is igaz. Tehát ha az emberek pénzt kapnak arra, hogy bizonyos területen elköltsék azt, azzal ösztönözhetik az adott területhez kapcsolódó technológia fejlődését. Jelenleg a napelem rendszerek megtérülése olyan 10 év körüli. Ezután a 10 év után gyakorlatilag ingyen van az áram, de a napelemek amortizációját beszámolva azt szokták mondani, hogy minimum olyan 20 évre lehet velük számolni. Alapvetően tehát megéri napelemet tetetni a tetőre, de az emberek nagy részének nincs arra pénze, hogy ezt meglépje. Ha az alapjövedelmet lehetne arra használni, hogy abból az emberek napelem rendszert vegyenek hitelre, akkor a megnövekedett igényeknek köszönhetően nagy lökést kaphatna a terület, ami előremozdíthatná a technológia fejlődését. De igaz lehet ez házi víztisztító rendszerekre is, amivel olcsóbb az ivóvíz előállítása, stb. Ez mind a rezsi kategória, és mivel ennek fedezéséről van szó, költhetnénk rá az alapjövedelemből. Tehát egyfelől a technológia fejlődése egyre könnyebbé tehetné a szükséges alapjövedelem kitermelését, másfelől az alapjövedelem elköltésének célzott módja lökést adhatna az azt szolgáló technológiák fejlődésének. Tulajdonképpen ezzel a célzott alapjövedelemmel a szociális rendszer egyszerűsítése mellett eszközt is kapna az állam arra, hogy bizonyos területeket támogasson. A jelenlegi rendszerben ha mondjuk a megújuló energiák felhasználását szeretnék támogatni, akkor elkülönítenek erre egy pénzalapot, amit meg kell pályázni, és akinek sikerül, az olcsóbban juthat mondjuk napelem rendszerhez. Ez egy elbonyolított rendszer. A lehetőséget reklámozni kell, de sokan így sem tudnak róla, bonyolult megpályázni, és az elosztás sem egyenlő, így igazságtalan. E helyett a fenti rendszerben egyszerűen lehetővé kellene tenni, hogy az alapjövedelmet ilyen célra is elkölthessük, így mindenkinek megteremtve a lehetőséget arra, hogy éljen ezzel a támogatással.
+
+<strong>És tényleg jó lenne ez nekünk? Nincs ennek negatív hatása a gazdaságra?</strong>
+
+Azt gondolom, hogy a fenti modell kiküszöböli azokat a gondokat, amiket a legtöbben az alapjövedelemmel szemben kritikaként felhoznak. Ez a modell nem csökkenti a munkakedvet, egyszerűen csak a munkához való viszonyunk változna meg, mivel az többé nem az életben maradásért való küzdelemről szólna, hanem mindössze a luxus megteremtéséről. Sokan kiléphetnének abból a mókuskerékből, hogy felkelek, elmegyek dolgozni, 8 óra után fáradtan hazaérek, TV, alvás, aztán jöhet a következő nap. E helyett több időnk maradna a gyerekekre, egymásra, a hobbinkra, vagy akár pihenésre, tehát mindarra, ami boldoggá tesz minket. Az egyik szülő akár minden nap otthon maradhatna a gyerekkel tanulni (akár válthatnák egymást), vagy a szülők 4-6 órás munkát vállalhatnának, hogy csak addig dolgozzanak, amíg a srácok is suliban vannak. Ez hosszú távon boldogabb, kiegyensúlyozottabb gyermekeket és embereket jelent, és egészségesebb társadalmat. Ha az emberek nem kényszerből dolgoznak, szabadabban választhatnak a munkahelyek között, jobban megtalálhatják azt, amit szeretnek, fontosabbnak érezhetik magukat, ez pedig szerintem jótékonyan hatna a produktivitásra is. Az emberek egy ilyen biztos háttérrel maguk mögött jobban mernének kockáztatni. Aki eddig nem merte, most létrehozhatná a vállalkozást amiről eddig álmodozott. Indíthat startupot, megpróbálhatja megvalósítani az ötleteit, hiszen ha nem sikerül, nincs veszve semmi. És szerintem pontosan ez a mentalitás, ez a kockázatvállalási kedv az, ami hosszú távon kimutatható gazdasági fejlődéssel járna. A <a title="Maslow-piramis" href="http://hu.wikipedia.org/wiki/Maslow-piramis" target="_blank">Maslow-piramis</a> jut eszembe erről. Ha az embereknek biztosítjuk az alapvető szükségleteit, csak akkor tudják őket magasabb rendű célok motiválni. Azt gondolom, hogy az alapjövedelem ezt az alapot teremthetné meg, és ezek a magasabb rendű motivációk azok, amik gazdasági fellendülést hozhatnának. Ez az amiért szimpatikus nekem az alapjövedelem gondolata, mert bevezetésével egy boldogabb, kiegyensúlyozottabb, kreatívabb, innovatívabb, tehát összességében sikeresebb társadalom vízióját látom magam előtt. Ha az ember körbenéz a neten, láthatja, hogy sokan kampányolnak a pénzrendszer, és az azzal összefüggő bankrendszer ellen, mintha az valami gonosz dolog lenne. Pedig valójában nem ezzel van problémájuk. A forradalmak sem azért törnek ki, mert a szomszédnak nagyobb az autója, és szebb a háza, hanem azért, mert az embereknek nincs mit enniük. Egy olyan rendszerben, ami az alapszükségleteket alanyi jogon kielégíti, nincs meg ez a frusztráció. A pénz maga nem ördögtől való, de el kellene választani a luxust és az alapszükségletek kielégítését. Talán ebben fogalmazható meg legegyszerűbben a fentiek filozófiája. Nem vagyok sem szociológus, sem pszichológus, sem közgazdász, sem politikus, és a fenti pár gondolat sem egy kidolgozott modell, de úgy érzem, hogy az alapjövedelem eszméje fölé talán felépíthető lenne egy olyan rendszer, amivel hosszú távon mind az egyén, mind a társadalom egésze jól jár.
+					</div>
+					<footer>
+						<p><br/>Originally published at <a href="http://lf.estontorise.hu/archives/436">http://lf.estontorise.hu/archives/436</a> on 2014-01-25 23:15:59.</p>
+					</footer>
+				</article>
+			</div><!-- /.main -->
+			<aside role="complementary">
+				<div class="span3" style="width: 190px; opacity: 0.6; font-size: 10px;">
+					<div style="background-color: #eee; padding: 5px;"><a rel="author" href="https://plus.google.com/115334992192871078712?rel=author" target="_blank">
+							<img src="../assets/img/profile.jpg" class="img-rounded" alt="Laszlo Fazekas (TheBojda) - Szabad�sz� Android, PHP, J2EE fejleszt?">
+						</a>
+						<div data-href="//plus.google.com/115334992192871078712" data-rel="author" style="display: none;"></div>
+						<p style="margin-top: 10px;">
+							Szabadúszó fejlesztőként dolgozom már jópár éve. Főleg J2EE, Android, és PHP projekteket vállalok, de sok más technológiába belekóstoltam már.
+							Bővebb információért olvasd el <a href="../assets/fazekas_laszlo_cv_hu.pdf">szakmai önéletrajzomat</a>.</p>
+						<p>Hobbim a programozás mellett az olvasgatás. Főleg a természettudományok érdekelnek, azon belül is leginkibb a fizika.</p>
+						<p>A jelenlegi mellett van egy új blogom <a href="https://medium.com/@thebojda">Medium</a>-on, egyéb gondolataimat, vagy az általam érdekesnek talált cikkeket/híreket pedig általában <a
+								href="https://plus.google.com/115334992192871078712">Google+</a>-on osztom meg. A jobb bejegyzéseknek kicsatornáztam egy külön blogba, amit a <a href="http://gp.estontorise.hu/" target="_blank">gp.estontorise.hu</a>
+							címen érhetsz el. Ha nem használod a Google+-t, de szeretnél követni, akkor megteheted <a href="https://www.facebook.com/laszlofazekas.googleplus" target="_blank">Facebook</a>-on, vagy <a
+								href="https://twitter.com/TheBojda" target="_blank">Twitteren</a> is. E-mailben pedig a <a id="email" href="#"></a> címen érhetsz el.</p>
+						<script>var mail = document.getElementById("email"); mail.innerHTML = "laszlo" + "." + "fazekas" + "@" + "estotorise." + "hu";</script>
+						<p>
+							<a href="https://twitter.com/TheBojda" target="_blank"><img src="../assets/img/twitter.png" alt="twitter" /></a>
+							<a href="https://github.com/TheBojda" target="_blank"><img src="../assets/img/github.png" alt="github" /></a>
+						</p>
+					</div>
+				</div>
+			</aside><!-- /.sidebar -->
+		</div><!-- /.content -->
+	</div><!-- /.wrap -->
+	<script type="text/javascript">
+		user = 'mailto:' + 'laszlo' + '.' + 'fazekas';
+		document.getElementById('email').href = user + '@' + 'estontorise' + '.hu';
+	</script>
+</body>
+
+</html>

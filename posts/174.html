@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="hu"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang="hu"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="hu"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="hu">
+<!--<![endif]-->
+
+<head>
+	<meta charset="utf-8">
+	<title>HgEclipse - Mercurial az Eclipse-ben - Gondolatok (Fazekas László blogja)</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="keywords" content="Android, Android fejlesztő, Android programozó, Gondolatok, Fazekas László, PHP, PHP fejlesztő, J2EE, Java, J2EE fejelsztő, szabadúszó, programozó" />
+	<meta name="description" content="Gondolatok - Fazekas László blogja" />
+	<meta name="robots" content="index, follow, max-video-preview:-1, max-snippet:-1, max-image-preview:large" />
+	<meta property="og:locale" content="hu_HU" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="HgEclipse - Mercurial az Eclipse-ben" />
+	<meta property="og:description" content="HgEclipse - Mercurial az Eclipse-ben" />
+	<meta property="og:site_name" content="Gondolatok (Fazekas László blogja)" />
+	<meta property="article:published_time" content="2011-05-08 09:34:10" />
+	<meta property="article:modified_time" content="2011-05-08 09:34:10" />
+	<link rel="stylesheet" href="../assets/css/bootstrap.css">
+	<link rel="stylesheet" href="../assets/css/bootstrap-responsive.css">
+	<link rel="stylesheet" href="../assets/css/app.css">
+	<style>
+		.blog-title {
+			opacity: 0.1;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			width: 100%;
+			-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";
+			filter: alpha(opacity=10);
+		}
+
+		.blog-title h1 {
+			font-size: 30px;
+			line-height: 30px;
+			color: #000;
+		}
+
+		.blog-title p {
+			font-size: 20px;
+			color: #000;
+		}
+
+		.blog-content {
+			color: rgb(77, 77, 77);
+			font-family: 'proxima-nova', sans-serif;
+			font-weight: 500;
+			line-height: 1.5em;
+			font-size: 16px;
+		}
+
+		.blog-content h2 a {
+			font-size: 25px;
+			line-height: 25px;
+			color: rgb(58, 58, 58);
+			font-weight: 600;
+		}
+
+		.blog-content h1 {
+			font-size: 30px;
+			line-height: 30px;
+			color: rgb(58, 58, 58);
+			font-weight: 600;
+		}
+
+		.widget {
+			background-color: #eee;
+			padding: 5px;
+			margin-top: 10px;
+		}
+
+		.widget h3 {
+			font-size: 14px;
+			color: #999;
+		}
+
+		.widget h3 a {
+			font-size: 14px;
+			color: #999;
+			text-decoration: none;
+		}
+
+		.widget .rsswidget img {
+			display: none;
+		}
+
+		#google_translate_element select {
+			width: 180px;
+		}
+	</style>
+</head>
+
+<body class="post-template-default single single-post postid-727 single-format-standard 727">
+	<header role="banner">
+		<div class="blog-title">
+			<div style="background-color: #bbb; padding-left: 30px; padding-bottom: 2px; padding-top: 2px;">
+				<h1>Gondolatok (Fazekas László blogja)</h1>
+				<p>Bármi ami épp folgalkoztat</p>
+			</div>
+		</div>
+	</header>
+	<div class="wrap container" role="document">
+		<div class="content row blog-content">
+			<div class="span2 hidden-phone hidden-tablet" style="margin-left: 70px;"></div>
+			<div class="span7" style="margin-left: 0px;" role="main">
+				<article class="post-727 post type-post status-publish format-standard hentry category-nincs-kategorizalva">
+					<header>
+						<h1 class="entry-title">HgEclipse - Mercurial az Eclipse-ben</h1>
+					</header>
+					<div class="entry-content">
+						Nemrégiben írtam egy rövid <a href="http://lf.estontorise.hu/archives/164">bejegyzést</a> a Mercurial elosztott verziókezelő rendszerről. Ott a TortoiseHg-n keresztül mutattam be a rendszer lehetőségeit dióhéjban. Mivel azonban elsősorban a fejlesztésekhez használok verziókezelő rendszereket, szükségem volt egy Eclipse pluginre. Nagyon rövid keresés után rá is találtam a <a href="http://www.javaforge.com/project/HGE">HgEclipse</a> kiegészítőre. A kiegészítő telepítése nagyon egyszerű: a szokásos módon a honlapon található update URL-t kell megadni az eclipse-nek, ahonnan a rendszer lehúzza a kiegészítőt, és folyamatosan követi is annak frissítéseit. A HgEclipse nagyon jól integrálódik az Eclipse általános verziókezelő moduljába. Tehát a funkciókat a Team menüpont alatt fogjuk megtalálni, itt hozhatunk létre tárolót, innen commit-olhatunk, stb. Az egész annyira kézre áll, hogy ha lehet ilyet mondani, még kényelmesebb is a használata, mint a TortoiseHg-nek (pedig ahhoz sem kell atomfizikus diploma).  Nézzük is meg dióhéjban, hogy működik.
+
+Első körben hozzunk létre egy Java projektet, mondjuk MercurialTest néven. Eztán a szokásos jobb gomb -> Team/Share project .../Mercurial módszerrel hozzuk is létre a tárolót. Ahogyan az előző bejegyzésben már írtam, maga a tároló nem több, mint néhány speciális rejtett fájl a verziókezelt mappában, így nincs más dolgunk, mint nyomni egy finish-t, és kész is a tároló. Nem kell megadnunk szervert, stb. Ha megvagyunk, hozzunk is létre egy állományt, mondjuk egy szokásos HelloWorld.java programot. Ha ez is megvan, akkor az SVN-ből már megszokott Team/Commit módszerrel rögzíthetjük a változásokat. Ilyenkor kell adnunk valami rövid leírást az adott verzióhoz (igen, kell, nem lehet elhagyni, ami nem is feltétlen baj), kiválasztjuk a fájlokat, és már kész is a verzió. Tehát a dolog ugyanúgy megy, mint SVN esetén, csak nem kell hozzá szerver. E helyett minden a projekt könyvtárában lévő lokális tárolóba kerül. A Team/Show history-val láthatjuk az egyes verziókban történ változásokat, összehasonlíthatjuk, hogy hol mi változott, tehát mindent megtehetünk, amit SVN-ben. Ahogyan az előző bejegyzésben már írtam, az elosztott verziókezelőknél a fejlesztő a lokális tárolóba dolgozik mindaddig, amíg nem végez egy feladattal. Ha a feladat elkészült (letesztelte, jól működik a programrész, stb.), csak akkor tolja fel a változásokat a központi tárolóba. Ezt a Team/Push... menüpont segítségével tehetjük meg. Itt értelem szerűen megadhatjuk a távoli tároló címét, ahová betoljuk a változásokat. Ez felel meg kb. az SVN commit-nak. (Mivel a Mercurial lokális tárolója valójában néhány fájlból áll, ezért elvileg megtehető az is, hogy valaki Mercurial-t használ lokális verziókezelésre, majd ha elkészült, a változásokat a régi SVN tárolójába tolja be. Ilyesmivel nem próbálkoztam, és nem is tudom mennyire lehet hatékony, de ha valaki nagyon ragaszkodik az SVN-hez, az próbálkozhat ilyesmivel. Így esetleg fájdalommentesebb lehet az átállás egyik rendszerről a másikra.) Próbaképp készítsünk néhány lokális változatot, majd térjünk rá az elosztott verziókezelés egyik legnagyobb előnyére, és klónozzunk.
+
+A klónozás kicsit trükkös Eclipse-ben, ugyanis nem a Team, hanem az Import menüpontban találjuk a Mercurial/Clone repository menüpont alatt (ami utólag végiggondolva végül is logikus). A klónozásra kiválaszthatunk távoli tárolót (ez felel meg kb. az SVN checkout-nak), vagy lokális tárolót. Próbaképp válasszuk ki a fájlrendszerből az eredeti (azóta Mercurial tárolóvá tett) eclipse projektet. Ha elkészült a klón, itt is csináljunk néhány változatot, és az eredeti projektben is commit-oljunk néhányat, lehetőleg úgy, hogy a kétféle változtatás üsse egymást (így tesztelhetjük majd a merge-öt). Ha készen vagyunk, próbáljuk visszafésülni az eredeti projektbe az újonnan létrehozott változatokat. Ehhez az eredeti tárolón használjuk a Team/Pull menüpontot. (Az előző bejegyzésben már írtam arról, hogy a változásokat vagy tolni [push], vagy húzni [pull] lehet egyik tárolóból a másikba.) Itt válasszuk ki a második lokális tárolót (természetesen használhatnánk távoli tárolót is), és húzzuk át a változásokat. Ekkor az eredeti tárolóban létrejön egy másik ág, és a HgEclipse rögtön rá is kérdez, hogy összefésülje-e a két ágat. Ezt ugye érdemes megtenni, úgyhogy válasszuk a merg-öt. Ha jól dolgoztunk, a rendszer nem fogja tudni simán összefésülni a két ágat, és néhány állomány conflict-es lesz. Ez ismerős lehet SVN-ből is, hiszen ott is előfordulhat, hogy a szerveren lévő változatot nem lehet automatikusan összefésülni a lokális változattal. Mondjuk az SVN ilyenkor televágja minden krix-krax-al a fájlt, és létrehoz egy állományt a lokális, egyet pedig a szerveren lévő változatnak. A Mercurial ennél szebben jár el, hiszen ott csak egy kis jelet látunk a fájl mellet, hogy conflict van, de nem rontja el az eredeti tartalmat, alul pedig megjelenik egy Mercurial Merge ablak, ahol látszik a conflict-es fájlok listája. Itt ha jobb gombbal rákattintunk egy állományra, a legelső menüpont az Open in Merge Editor. Itt szépen egymás mellett látjuk a két változatot, és kézzel kijavíthatjuk a hibákat. Elég kényelmes kis eszköz. Ha készen vagyunk a kézi merge-öléssel, újra nyomjunk jobb gombbal a fájlra, és az SVN-ből már megszokott "mark resolved" menüponttal fogadjuk el a változásokat. Ha megvagyunk a javításokkal, az eredményt kitolhatjuk a szerveren tárolt közös tárolóba, stb. Dióhéjban körülbelül ennyi lenne.
+
+Véleményem szerint a HgEclipse egy nagyon jól sikerült kis eszköz, és önmagában a HgEclipse is, és a Mercurial mint verziókezelő is jóval többet ad nekünk, mint a hagyományos SVN tárolók. Az én jóslatom, hogy egyre többen fogják felismerni az ebben rejlő lehetőségeket, és néhány éven belül mindenhol át fognak térni valamilyen elosztott verziókezelő (Git, Mercurial, stb.) használatára.
+					</div>
+					<footer>
+						<p><br/>Originally published at <a href="http://lf.estontorise.hu/archives/174">http://lf.estontorise.hu/archives/174</a> on 2011-05-08 09:34:10.</p>
+					</footer>
+				</article>
+			</div><!-- /.main -->
+			<aside role="complementary">
+				<div class="span3" style="width: 190px; opacity: 0.6; font-size: 10px;">
+					<div style="background-color: #eee; padding: 5px;"><a rel="author" href="https://plus.google.com/115334992192871078712?rel=author" target="_blank">
+							<img src="../assets/img/profile.jpg" class="img-rounded" alt="Laszlo Fazekas (TheBojda) - Szabad�sz� Android, PHP, J2EE fejleszt?">
+						</a>
+						<div data-href="//plus.google.com/115334992192871078712" data-rel="author" style="display: none;"></div>
+						<p style="margin-top: 10px;">
+							Szabadúszó fejlesztőként dolgozom már jópár éve. Főleg J2EE, Android, és PHP projekteket vállalok, de sok más technológiába belekóstoltam már.
+							Bővebb információért olvasd el <a href="../assets/fazekas_laszlo_cv_hu.pdf">szakmai önéletrajzomat</a>.</p>
+						<p>Hobbim a programozás mellett az olvasgatás. Főleg a természettudományok érdekelnek, azon belül is leginkibb a fizika.</p>
+						<p>A jelenlegi mellett van egy új blogom <a href="https://medium.com/@thebojda">Medium</a>-on, egyéb gondolataimat, vagy az általam érdekesnek talált cikkeket/híreket pedig általában <a
+								href="https://plus.google.com/115334992192871078712">Google+</a>-on osztom meg. A jobb bejegyzéseknek kicsatornáztam egy külön blogba, amit a <a href="http://gp.estontorise.hu/" target="_blank">gp.estontorise.hu</a>
+							címen érhetsz el. Ha nem használod a Google+-t, de szeretnél követni, akkor megteheted <a href="https://www.facebook.com/laszlofazekas.googleplus" target="_blank">Facebook</a>-on, vagy <a
+								href="https://twitter.com/TheBojda" target="_blank">Twitteren</a> is. E-mailben pedig a <a id="email" href="#"></a> címen érhetsz el.</p>
+						<script>var mail = document.getElementById("email"); mail.innerHTML = "laszlo" + "." + "fazekas" + "@" + "estotorise." + "hu";</script>
+						<p>
+							<a href="https://twitter.com/TheBojda" target="_blank"><img src="../assets/img/twitter.png" alt="twitter" /></a>
+							<a href="https://github.com/TheBojda" target="_blank"><img src="../assets/img/github.png" alt="github" /></a>
+						</p>
+					</div>
+				</div>
+			</aside><!-- /.sidebar -->
+		</div><!-- /.content -->
+	</div><!-- /.wrap -->
+	<script type="text/javascript">
+		user = 'mailto:' + 'laszlo' + '.' + 'fazekas';
+		document.getElementById('email').href = user + '@' + 'estontorise' + '.hu';
+	</script>
+</body>
+
+</html>

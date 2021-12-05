@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="hu"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang="hu"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="hu"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="hu">
+<!--<![endif]-->
+
+<head>
+	<meta charset="utf-8">
+	<title>Java Servlet-ek futási idejének limitálása - Gondolatok (Fazekas László blogja)</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="keywords" content="Android, Android fejlesztő, Android programozó, Gondolatok, Fazekas László, PHP, PHP fejlesztő, J2EE, Java, J2EE fejelsztő, szabadúszó, programozó" />
+	<meta name="description" content="Gondolatok - Fazekas László blogja" />
+	<meta name="robots" content="index, follow, max-video-preview:-1, max-snippet:-1, max-image-preview:large" />
+	<meta property="og:locale" content="hu_HU" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="Java Servlet-ek futási idejének limitálása" />
+	<meta property="og:description" content="Java Servlet-ek futási idejének limitálása" />
+	<meta property="og:site_name" content="Gondolatok (Fazekas László blogja)" />
+	<meta property="article:published_time" content="2010-04-22 11:03:23" />
+	<meta property="article:modified_time" content="2010-04-22 11:03:23" />
+	<link rel="stylesheet" href="../assets/css/bootstrap.css">
+	<link rel="stylesheet" href="../assets/css/bootstrap-responsive.css">
+	<link rel="stylesheet" href="../assets/css/app.css">
+	<style>
+		.blog-title {
+			opacity: 0.1;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			width: 100%;
+			-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";
+			filter: alpha(opacity=10);
+		}
+
+		.blog-title h1 {
+			font-size: 30px;
+			line-height: 30px;
+			color: #000;
+		}
+
+		.blog-title p {
+			font-size: 20px;
+			color: #000;
+		}
+
+		.blog-content {
+			color: rgb(77, 77, 77);
+			font-family: 'proxima-nova', sans-serif;
+			font-weight: 500;
+			line-height: 1.5em;
+			font-size: 16px;
+		}
+
+		.blog-content h2 a {
+			font-size: 25px;
+			line-height: 25px;
+			color: rgb(58, 58, 58);
+			font-weight: 600;
+		}
+
+		.blog-content h1 {
+			font-size: 30px;
+			line-height: 30px;
+			color: rgb(58, 58, 58);
+			font-weight: 600;
+		}
+
+		.widget {
+			background-color: #eee;
+			padding: 5px;
+			margin-top: 10px;
+		}
+
+		.widget h3 {
+			font-size: 14px;
+			color: #999;
+		}
+
+		.widget h3 a {
+			font-size: 14px;
+			color: #999;
+			text-decoration: none;
+		}
+
+		.widget .rsswidget img {
+			display: none;
+		}
+
+		#google_translate_element select {
+			width: 180px;
+		}
+	</style>
+</head>
+
+<body class="post-template-default single single-post postid-727 single-format-standard 727">
+	<header role="banner">
+		<div class="blog-title">
+			<div style="background-color: #bbb; padding-left: 30px; padding-bottom: 2px; padding-top: 2px;">
+				<h1>Gondolatok (Fazekas László blogja)</h1>
+				<p>Bármi ami épp folgalkoztat</p>
+			</div>
+		</div>
+	</header>
+	<div class="wrap container" role="document">
+		<div class="content row blog-content">
+			<div class="span2 hidden-phone hidden-tablet" style="margin-left: 70px;"></div>
+			<div class="span7" style="margin-left: 0px;" role="main">
+				<article class="post-727 post type-post status-publish format-standard hentry category-nincs-kategorizalva">
+					<header>
+						<h1 class="entry-title">Java Servlet-ek futási idejének limitálása</h1>
+					</header>
+					<div class="entry-content">
+						Már régóta keresek olyan megoldást Java-ban, mint PHP esetén a max_execution_time, amivel a Servlet-ek futási idejét lehetne korlátozni. Hosszú keresgélés után arra jutottam, hogy a problémának egyszerű frappáns megoldása nem létezik, ugyanis az alkalmazásszerverek szálakban futtatják a Servlet-eket, és mivel a szálak leállítása (Thread.stop) már jó ideje depricated, nincs olyan metódus, amivel kilőhetnénk egy szálat. Röviden tehát nincs értelmes megoldás arra, hogy kivédjünk egy Servlet-ben keletkező végtelen ciklust. Ugyanakkor van 1-2 áthidaló módszer, ami nem szép ugyan, de valamilyen módon megoldja a fenti problémát. Ezekből írnék le néhányat:
+
+A legegyszerűbb megoldás, hogy a depricated megjelölés ellenére használjuk a stop metódust. Ez több szempontból is veszélyes. Először is ha jól tudom a depricated metódusok későbbi Java verziókból eltűnhetnek, így az alkalmazásunk Java verzióhoz lesz kötve. Ezen kívül a stop-nak vannak egyéb nem kívánatos hatásai is, nem véletlen, hogy depricated lett. Az a gond a stop-al, hogy ha megölünk egy szálat, bizonyos erőforrások lefoglalva maradhatnak. Tipikus példa, hogy ha létrehozunk egy átmeneti fájlt a szálban, majd kilőjük azt, az átmeneti fájl ottmarad. Ez mondjuk áthidalható oly módon, hogy nem engedünk ilyen erőforrásokat használni a szálban. Például fájlok helyett adatbázis használunk. Ez utóbbi esetben ugyanis megtehetjük, hogy a szálnak adunk egy adatbázis kapcsolatot, indítunk egy tranzakciót, és ha az idő lejárt, csinálunk egy rollback-et, vagy egyszerűen kirántjuk alóla a kapcsolatot (az adatbázis szerver jó eséllyel ez utóbbi esetben is rollback-el magától). Így nem marad inkonzisztens állapot. Tulajdonképpen egy servlet-en belül más külső erőforrást nagyon nem is használunk, tehát a fájlrendszer adatbázisra történő lecserélése szinte teljes egészében megoldja a problémánkat. Ezt amúgy is érdemes megfontolni, ugyanis a fájlrendszerrel ellentétben az adatbázis viszonylag egyszerűen klaszterezhető, így igény esetén könnyebb lesz több gépen szétkenni az alkalmazást. Ennek ellenére azért a Thread.stop függvény depricated mivolta kicsit kérdésessé teszi az egész eljárást.
+
+A másik megoldás amit találtam, hogy a Servlet-ek kiszolgálását nem szálakban, hanem különálló process-ekben végezzük el. Ez kicsit hasonlít a CGI végrehajtáshoz, és a hátrányai is ugyanazok. Minden esetben újra inicializálni kell az egész környezetet, aminek jelentős overheadje van. A megoldás ugyanaz lehet, mint amit CGI esetén a FastCGI csinál. Elindítunk néhány Servlet kiszolgáló process-t, amit végrehajtás után újrahasznosítunk. Így nincs inicializálási overhead, és bár az erőforrásigény nagyobb (pl. minden process-nek külön heap kell), azért az esetek többségében elviselhető. A futási időben nem lesz különösebb változás, hiszen alacsony szinten a natív szálak és a process-ek közötti váltás hasonlóan történik. Ebben az esetben tehát úgy néz ki a dolog, hogy indítunk valamennyi servlet kiszolgáló process-t, és ha kérés jön, keresünk egy szabadot, lekezeltetjük a kérést, majd a felhasználónak visszadobjuk a választ. Ha a process túl sokat időzik a válaszadással (pl. végtelen ciklus miatt), egyszerűen kilőjük az adott process-t, létrehozunk egy újat, és minden megy tovább úgy, ahogy eddig. A kérdés már csak annyi, hogy milyen módon érdemes kilőni a process-t? Az egyik módszer, hogy egyszerűen kill-el kilőjük. Ami hatásos ugyan, de elég durva, hiszen a Servlet futtató környezetnek esélye sincs, hogy normálisan lezárja az erőforrásokat (pl. SQL kapcsolat lezárása). Ennél sokkal enyhébb, ha a kérés feldolgozását külön szálba indítjuk, és indítunk mellé egy timeout szálat, ami ha lejár, ellenőrzi, hogy volt-e eredménye a feldolgozásnak. Ha igen, visszaadja azt, ha nem, felszabadítja az erőforrásokat, és futtat egy System.exit()-et. Ezzel a megoldással tulajdonképpen belülről vesszük rá öngyilkosságra a túl sok erőforrást felhasználó process-t. 
+
+A fentiek alapján már nagyjából összeállt a fejemben az architektúra. Mivel általában így is - úgy is Apache-ot használunk a request-ek feldolgozására (pl. mod_jk-n keresztül), ezért célszerű ezzel legyártani a process-eket. Erre ideális megoldás lehet a FastCGI, ahol beállíthatjuk, hogy hány élő process legyen, és a webszerverrel történő kommunikáció is adott. Minden egyes Java process saját Servlet futtató környezettel rendelkezik. A lényeg annyi, hogy egy process egyetlen request feldolgozását végezze egyszerre. Ha jön egy kérés, a FastCGI mechanizmus kiosztja azt valamelyik process-nek, ami megpróbálja kiszolgálni a kérést. Ha a Servlet nem végez az adott időn belül, a process saját magát öli meg, amit a FastCGI elvileg kezel, tehát a halott process-t új változattal pótolja. A megoldás szépsége, hogy tulajdonképpen bármire általánosítható, tehát ugyanezt pl. meg lehet valósítani Python-ra is, így lesz egy időkorlátos Python futtatókörnyezetünk. A FastCGI-nak köszönhetően az inicializálást elég egyszer elvégezni, a process-en belül működik a connection pool-ing, vagy bármilyen más "újrahasznosító" technológia, így a végrehajtásnak nem lesz sokkal nagyobb az overhead-je, mint ha szálakkal dolgoznánk. Az egyetlen probléma a külön allokált heap, de ezzel lehet takarékoskodni, és ha jobban meggondoljuk, ez akár előny is lehet, hiszen egy felszálazott környezetben ha egyetlen szálnak elszáll a memória felhasználása, az az egész alkalmazás OutOfMemory-val történő lehalását eredményezi, egy ilyen rendszerben viszont minden végrehajtásnak külön memória korlátja van, így legrosszabb esetben is csak az aktuális request száll el.  
+
+Összességében tehát bár nem próbáltam még ki, de úgy érzem ez egy hatékony megoldás lehet biztonságos keretbe zárt Servletek futtatására, és egy nagy rendelkezésre állást biztosító, külső fejlesztők számára nyitott (a PHP-hoz hasonlóan megvalósítható rajta Java hosting, hisz a felhasználók nem tudják tönkretenni a futtatókörnyezetet) Google App Engine-hez hasonló rendszer kialakítására.
+					</div>
+					<footer>
+						<p><br/>Originally published at <a href="http://lf.estontorise.hu/archives/41">http://lf.estontorise.hu/archives/41</a> on 2010-04-22 11:03:23.</p>
+					</footer>
+				</article>
+			</div><!-- /.main -->
+			<aside role="complementary">
+				<div class="span3" style="width: 190px; opacity: 0.6; font-size: 10px;">
+					<div style="background-color: #eee; padding: 5px;"><a rel="author" href="https://plus.google.com/115334992192871078712?rel=author" target="_blank">
+							<img src="../assets/img/profile.jpg" class="img-rounded" alt="Laszlo Fazekas (TheBojda) - Szabad�sz� Android, PHP, J2EE fejleszt?">
+						</a>
+						<div data-href="//plus.google.com/115334992192871078712" data-rel="author" style="display: none;"></div>
+						<p style="margin-top: 10px;">
+							Szabadúszó fejlesztőként dolgozom már jópár éve. Főleg J2EE, Android, és PHP projekteket vállalok, de sok más technológiába belekóstoltam már.
+							Bővebb információért olvasd el <a href="../assets/fazekas_laszlo_cv_hu.pdf">szakmai önéletrajzomat</a>.</p>
+						<p>Hobbim a programozás mellett az olvasgatás. Főleg a természettudományok érdekelnek, azon belül is leginkibb a fizika.</p>
+						<p>A jelenlegi mellett van egy új blogom <a href="https://medium.com/@thebojda">Medium</a>-on, egyéb gondolataimat, vagy az általam érdekesnek talált cikkeket/híreket pedig általában <a
+								href="https://plus.google.com/115334992192871078712">Google+</a>-on osztom meg. A jobb bejegyzéseknek kicsatornáztam egy külön blogba, amit a <a href="http://gp.estontorise.hu/" target="_blank">gp.estontorise.hu</a>
+							címen érhetsz el. Ha nem használod a Google+-t, de szeretnél követni, akkor megteheted <a href="https://www.facebook.com/laszlofazekas.googleplus" target="_blank">Facebook</a>-on, vagy <a
+								href="https://twitter.com/TheBojda" target="_blank">Twitteren</a> is. E-mailben pedig a <a id="email" href="#"></a> címen érhetsz el.</p>
+						<script>var mail = document.getElementById("email"); mail.innerHTML = "laszlo" + "." + "fazekas" + "@" + "estotorise." + "hu";</script>
+						<p>
+							<a href="https://twitter.com/TheBojda" target="_blank"><img src="../assets/img/twitter.png" alt="twitter" /></a>
+							<a href="https://github.com/TheBojda" target="_blank"><img src="../assets/img/github.png" alt="github" /></a>
+						</p>
+					</div>
+				</div>
+			</aside><!-- /.sidebar -->
+		</div><!-- /.content -->
+	</div><!-- /.wrap -->
+	<script type="text/javascript">
+		user = 'mailto:' + 'laszlo' + '.' + 'fazekas';
+		document.getElementById('email').href = user + '@' + 'estontorise' + '.hu';
+	</script>
+</body>
+
+</html>

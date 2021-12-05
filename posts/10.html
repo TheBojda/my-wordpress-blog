@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="hu"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang="hu"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="hu"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="hu">
+<!--<![endif]-->
+
+<head>
+	<meta charset="utf-8">
+	<title>Óvatosan a Hibernate-el - Gondolatok (Fazekas László blogja)</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="keywords" content="Android, Android fejlesztő, Android programozó, Gondolatok, Fazekas László, PHP, PHP fejlesztő, J2EE, Java, J2EE fejelsztő, szabadúszó, programozó" />
+	<meta name="description" content="Gondolatok - Fazekas László blogja" />
+	<meta name="robots" content="index, follow, max-video-preview:-1, max-snippet:-1, max-image-preview:large" />
+	<meta property="og:locale" content="hu_HU" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="Óvatosan a Hibernate-el" />
+	<meta property="og:description" content="Óvatosan a Hibernate-el" />
+	<meta property="og:site_name" content="Gondolatok (Fazekas László blogja)" />
+	<meta property="article:published_time" content="2010-02-14 14:38:53" />
+	<meta property="article:modified_time" content="2010-02-21 17:06:18" />
+	<link rel="stylesheet" href="../assets/css/bootstrap.css">
+	<link rel="stylesheet" href="../assets/css/bootstrap-responsive.css">
+	<link rel="stylesheet" href="../assets/css/app.css">
+	<style>
+		.blog-title {
+			opacity: 0.1;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			width: 100%;
+			-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";
+			filter: alpha(opacity=10);
+		}
+
+		.blog-title h1 {
+			font-size: 30px;
+			line-height: 30px;
+			color: #000;
+		}
+
+		.blog-title p {
+			font-size: 20px;
+			color: #000;
+		}
+
+		.blog-content {
+			color: rgb(77, 77, 77);
+			font-family: 'proxima-nova', sans-serif;
+			font-weight: 500;
+			line-height: 1.5em;
+			font-size: 16px;
+		}
+
+		.blog-content h2 a {
+			font-size: 25px;
+			line-height: 25px;
+			color: rgb(58, 58, 58);
+			font-weight: 600;
+		}
+
+		.blog-content h1 {
+			font-size: 30px;
+			line-height: 30px;
+			color: rgb(58, 58, 58);
+			font-weight: 600;
+		}
+
+		.widget {
+			background-color: #eee;
+			padding: 5px;
+			margin-top: 10px;
+		}
+
+		.widget h3 {
+			font-size: 14px;
+			color: #999;
+		}
+
+		.widget h3 a {
+			font-size: 14px;
+			color: #999;
+			text-decoration: none;
+		}
+
+		.widget .rsswidget img {
+			display: none;
+		}
+
+		#google_translate_element select {
+			width: 180px;
+		}
+	</style>
+</head>
+
+<body class="post-template-default single single-post postid-727 single-format-standard 727">
+	<header role="banner">
+		<div class="blog-title">
+			<div style="background-color: #bbb; padding-left: 30px; padding-bottom: 2px; padding-top: 2px;">
+				<h1>Gondolatok (Fazekas László blogja)</h1>
+				<p>Bármi ami épp folgalkoztat</p>
+			</div>
+		</div>
+	</header>
+	<div class="wrap container" role="document">
+		<div class="content row blog-content">
+			<div class="span2 hidden-phone hidden-tablet" style="margin-left: 70px;"></div>
+			<div class="span7" style="margin-left: 0px;" role="main">
+				<article class="post-727 post type-post status-publish format-standard hentry category-nincs-kategorizalva">
+					<header>
+						<h1 class="entry-title">Óvatosan a Hibernate-el</h1>
+					</header>
+					<div class="entry-content">
+						Nemrégiben egy projekt kapcsán felmerült egy elég csúnya hiba. Nagyobb megterhelés esetén a rendszer processzor használata extrém magasra pörgött fel, olyannyira, hogy képtelen volt a webes kérések kiszolgálására, így újra kellett indítani. A rendszer fejlesztésével egyre instabilabbá vált a rendszer, aztán egy ponton elérte a teljes használhatatlanság fokát. Sokáig kerestük a hiba okát, mire rájöttünk, hogy mi okozta.
+
+A Hibernate egy rendkívül kényelmes JPA alapú ORM rendszer. Az ember létrehoz néhány felcímkézett osztályt, és ide tárolja az adatokat. A Hibernate pedig szinte láthatatlanul elvégzi az adatbázis leképzést, és a kapcsolódó adatbázis műveleteket. A hibát ott követtük el, hogy kihasználva ezt a kényelmességet úgy használtuk ezeket a perzisztens objektumokat, mintha a memóriában lennének. Ciklusok futkároztak keresztül kasul a listákon, olvasgattuk/írogattuk az elemeket, mindeközben fittyet hányva arra, hogy milyen komoly adatbázis műveletek futnak a háttérben. Mint később kiderült, annyira komolyak, hogy néhány száz felhasználó taccsra tudott vágni egy 8 processzoros gépet. Mikor bekapcsoltuk az SQL-ek loggolását, elborzadva láttuk az eredményt, egy-egy webes kérés kiszolgálásakor százával pörögtek a 3-4x-es join-olt lekérdezések. Nem csoda, hogy az alkalmazás hamar felzabálta a gépet. Végül is az adatbázis használat optimalizálásával, és cache-ek használatával hamar úrrá lettünk a problémán. Ezt a kis affért tekinthetnénk akár egyszerű programozási hibának is, de engem gondolkodóba ejtett.
+
+Egy régi kollégámmal annak idején sokat vitatkoztunk a Python és a Java nyelv kapcsán. Ő Python párti volt, én viszont nem nagyon tudtam megbarátkozni a nyelvvel. Ez azóta persze megváltozott. Script nyelvként nagyon megszerettem a Pythont, de komolyabb projektbe nem mernék belefogni vele. A vitánk alapja az volt, hogy szerintem a Python nagyon megengedő nyelv. Nem típusos, és szinte bármit felül lehet benne definiálni. Ez egyfelől nagyon kényelmes, ugyanakkor véleményem szerint egyben veszélyes is. Sokan egy programnyelv típusosságára vagy az operator overloading hiányára úgy tekintenek, mint koloncra, ami gúzsba köti a fejlesztőt, nem adja meg a kellő szabadságot, hogy kényelmes és elegáns kódot készítsünk. Én ugyanakkor ezeket a megkötéseket segítségnek tekintem, amelyek segítenek abban hogy hibátlan és optimális kódot készítsünk. A barátom érve ezzel szemben az volt, hogy ezeknek az eszközöknek a használata nem kötelező. Aki nem tud programozni, az ne használjon ilyesmit, aki jó fejlesztő, nem követ el szarvas hibákat. A probléma csak az, hogy az ember hamar elcsábul, vagy a felhasznált programkönyvtárak miatt belekényszerül abba, hogy éljen ezekkel a lehetőségekkel. A másik probléma, hogy ezek a nyelvek általában nem is adnak lehetőséget arra, hogy határok közé szorítsuk magunkat. Python esetén például ha akarnánk sem tudnánk típusos függvényeket írni, ami azért néha hasznos tud lenni, hiszen segít abban, hogy ne rontsuk el a paraméterezést (két paraméter véletlen felcserélése komoly galibát tud okozni). Van egy harmadik ok is, amiért a szigorú nyelvek mellett tettem le a voksomat. Egy komoly fejlesztés sokszor igen feszített tempóban történik. Kemények a határidők, sok a feature igény, kevés az ember. Ilyen körülmények között nem ér rá az ember gondolkodni, hogy vajon szép-e ez a kód, nem okoz-e majd később galibát, stb. Egyszerűen csak darálja a funkciókat, hogy elkészüljön a szoftver. Hasonló hibába estünk bele mi is a Hibernate kapcsán. Kihasználtuk az eszköz által nyújtott kényelmet, daráltuk a kódot, és nem gondoltuk végig, hogy ennek milyen következménye lehet. És ez a kis programozási nyelvekkel kapcsolatos kitérő itt kapcsolódik vissza az eredeti témához. Kényelem vs. biztonság.
+
+A Hibernate-es probléma kapcsán tehát elgondolkodtam, hogy milyen elvek szerint kellene vajon felépíteni egy ORM rendszert úgy, hogy ne futhasson bele az ember ilyen hibákba, hasonlóan ahhoz, ahogyan a Java típusossága segít abban, hogy ne cserélhessük fel a paramétereket úgy, ahogy Pythonban. Az első gondolatom az volt, hogy talán vissza kellene térni a tiszta SQL-hez. Így rá vagyunk kényszerítve, hogy explicit módon adjuk meg a lekérdezéseket, és rá vagyunk szorítva arra, hogy ezek a lekérdezések optimálisak legyenek. (Legalábbis a nem optimális lekérdezések kibökik a szemünket.) Egy ilyen rendszerben SQL-el kérdeznénk le az adatokat, leképeznénk őket objektumokba, elvégeznénk a szükséges műveleteket, majd SQL-el pakolnánk őket vissza az adatbázisba. Ez tipikus DAO filozófia, és pont azért alakultak ki az ORM rendszerek, mert ez így azért elég kényelmetlen. E mellett azt se felejtsük el, hogy a manuális leképzés megint csak sok hibalehetőséget rejt magában. Az ORM rendszerek automatikus leképzése, és az objektum szintű típusosság sok gondot levesz a vállunkról, ráadásul az alkalmazás adatbázis rendszer független lesz, ami megint csak nagy előny. Tehát az ORM-től nem olyan könnyű megszabadulni, és valószínűleg nem is kell, de nagyon oda kell rá figyelni, ami nem jó, és mint látható, komoly hibákat szülhet.
+
+Ami mostanában körvonalazódik a szemeim előtt, az valami olyan megoldás, ami ötvözi a JPA és a DAO-k előnyeit. A durva SQL-ek amiatt születtek, mert a rendszer felhúzott sok csatolt entitást is (ez okozta a sok join-t). Éppen ezért én a saját ORM rendszeremből kihagynám a kapcsolatokat, vagy legalábbis nem tenném annyira transzparenssé, ahogyan a Hibernate. Például egy entitáshoz kapcsolódó további entitásokat egy entitás osztályban definiált függvény szippantaná fel. Tehát az entitások tábla szintűek lennének, a kapcsolatok pedig explicit módon jelennének meg lekérdezések formájában. Bár nem okozott akkora galibát, de némi fejtörést igen, hogy bonyolultabb objektum manipulációk esetén az objektum struktúrát több request/response szakaszig a session-ben kell tartani, és csak ezután szabad visszarakni az adatbázisba. Mivel az entityManager csak 1-1 request alatt él, hamar problémát okozott, hogy egy session-ben lévő perzisztens objektumot (ami közben már elveszítette perzisztens jellegét) vissza akartunk rakni az adatbázisra (Lazy...Exception). Ennek kiküszöbölésére valamilyen long transaction mechanizmust tudnék elképzelni, ahol több request-en átívelő kérésekhez lehetne kérni egy long transaction-t. A long transaction session szintű objektum lenne, és ha felolvasunk/módosítunk valamit, ide kerülne. Végül egy commit-al a végén kerülne vissza az összes objektum az adatbázisra. Itt lehetne valamilyen ütközés figyelés (pl. verzionáljuk az objektumokat), ami konkurens írás esetén exception-el jelez. Végül pedig kellene valamilyen transzparens cache az adatbázis és az alkalmazás közé, hogy ha valamit felolvastunk, azt ne kelljen még egyszer felszedni. Valahogy így nézne ki egy ideális ORM rendszer.  Ami még kicsit zavaró, az a sok dinamikus proxy, ezek teljesen feleslegesen terhelik a processzort, ezek helyett hatékonyabb lenne statikus (fordítási idejű) kódgenerálást alkalmazni.
+
+Találkoztam még egy érdekes <a href="https://space4j.dev.java.net/">Space4j</a> nevű projekttel, ami az egész dolgot megfordította. Nem az adatbázist képezi memóriára, ehelyett az objektumokat a memóriában tartja, ami nem kell, azt perzisztensen kipakolja onnan, és e mellett mindent megold. Itt tehát nem a perzisztens objektumok cache-elése a feladat, hanem a cache (memória) perzisztens mentése. Talán pont egy ilyen megoldás lenne a leginkább ideális, persze kérdés, hogy mindezt hogy lehetne integrálni a már meglévő rendszerekkel, amennyiben hostolt rendszerben szeretnénk azt használni (pl. Google App Engine). Emellett még nem próbáltam a rendszert, tehát nem tudok nyilatkozni róla, hogy milyen rejtett hátrányai lehetnek egy ilyen megoldásnak.
+					</div>
+					<footer>
+						<p><br/>Originally published at <a href="http://lf.estontorise.hu/archives/10">http://lf.estontorise.hu/archives/10</a> on 2010-02-14 14:38:53.</p>
+					</footer>
+				</article>
+			</div><!-- /.main -->
+			<aside role="complementary">
+				<div class="span3" style="width: 190px; opacity: 0.6; font-size: 10px;">
+					<div style="background-color: #eee; padding: 5px;"><a rel="author" href="https://plus.google.com/115334992192871078712?rel=author" target="_blank">
+							<img src="../assets/img/profile.jpg" class="img-rounded" alt="Laszlo Fazekas (TheBojda) - Szabad�sz� Android, PHP, J2EE fejleszt?">
+						</a>
+						<div data-href="//plus.google.com/115334992192871078712" data-rel="author" style="display: none;"></div>
+						<p style="margin-top: 10px;">
+							Szabadúszó fejlesztőként dolgozom már jópár éve. Főleg J2EE, Android, és PHP projekteket vállalok, de sok más technológiába belekóstoltam már.
+							Bővebb információért olvasd el <a href="../assets/fazekas_laszlo_cv_hu.pdf">szakmai önéletrajzomat</a>.</p>
+						<p>Hobbim a programozás mellett az olvasgatás. Főleg a természettudományok érdekelnek, azon belül is leginkibb a fizika.</p>
+						<p>A jelenlegi mellett van egy új blogom <a href="https://medium.com/@thebojda">Medium</a>-on, egyéb gondolataimat, vagy az általam érdekesnek talált cikkeket/híreket pedig általában <a
+								href="https://plus.google.com/115334992192871078712">Google+</a>-on osztom meg. A jobb bejegyzéseknek kicsatornáztam egy külön blogba, amit a <a href="http://gp.estontorise.hu/" target="_blank">gp.estontorise.hu</a>
+							címen érhetsz el. Ha nem használod a Google+-t, de szeretnél követni, akkor megteheted <a href="https://www.facebook.com/laszlofazekas.googleplus" target="_blank">Facebook</a>-on, vagy <a
+								href="https://twitter.com/TheBojda" target="_blank">Twitteren</a> is. E-mailben pedig a <a id="email" href="#"></a> címen érhetsz el.</p>
+						<script>var mail = document.getElementById("email"); mail.innerHTML = "laszlo" + "." + "fazekas" + "@" + "estotorise." + "hu";</script>
+						<p>
+							<a href="https://twitter.com/TheBojda" target="_blank"><img src="../assets/img/twitter.png" alt="twitter" /></a>
+							<a href="https://github.com/TheBojda" target="_blank"><img src="../assets/img/github.png" alt="github" /></a>
+						</p>
+					</div>
+				</div>
+			</aside><!-- /.sidebar -->
+		</div><!-- /.content -->
+	</div><!-- /.wrap -->
+	<script type="text/javascript">
+		user = 'mailto:' + 'laszlo' + '.' + 'fazekas';
+		document.getElementById('email').href = user + '@' + 'estontorise' + '.hu';
+	</script>
+</body>
+
+</html>

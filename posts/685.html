@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="hu"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang="hu"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="hu"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="hu">
+<!--<![endif]-->
+
+<head>
+	<meta charset="utf-8">
+	<title>Blockchain a BitCoinon túl (NameCoin, Ethereum) - Gondolatok (Fazekas László blogja)</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="keywords" content="Android, Android fejlesztő, Android programozó, Gondolatok, Fazekas László, PHP, PHP fejlesztő, J2EE, Java, J2EE fejelsztő, szabadúszó, programozó" />
+	<meta name="description" content="Gondolatok - Fazekas László blogja" />
+	<meta name="robots" content="index, follow, max-video-preview:-1, max-snippet:-1, max-image-preview:large" />
+	<meta property="og:locale" content="hu_HU" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="Blockchain a BitCoinon túl (NameCoin, Ethereum)" />
+	<meta property="og:description" content="Blockchain a BitCoinon túl (NameCoin, Ethereum)" />
+	<meta property="og:site_name" content="Gondolatok (Fazekas László blogja)" />
+	<meta property="article:published_time" content="2017-06-03 12:32:03" />
+	<meta property="article:modified_time" content="2017-06-03 12:50:22" />
+	<link rel="stylesheet" href="../assets/css/bootstrap.css">
+	<link rel="stylesheet" href="../assets/css/bootstrap-responsive.css">
+	<link rel="stylesheet" href="../assets/css/app.css">
+	<style>
+		.blog-title {
+			opacity: 0.1;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			width: 100%;
+			-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";
+			filter: alpha(opacity=10);
+		}
+
+		.blog-title h1 {
+			font-size: 30px;
+			line-height: 30px;
+			color: #000;
+		}
+
+		.blog-title p {
+			font-size: 20px;
+			color: #000;
+		}
+
+		.blog-content {
+			color: rgb(77, 77, 77);
+			font-family: 'proxima-nova', sans-serif;
+			font-weight: 500;
+			line-height: 1.5em;
+			font-size: 16px;
+		}
+
+		.blog-content h2 a {
+			font-size: 25px;
+			line-height: 25px;
+			color: rgb(58, 58, 58);
+			font-weight: 600;
+		}
+
+		.blog-content h1 {
+			font-size: 30px;
+			line-height: 30px;
+			color: rgb(58, 58, 58);
+			font-weight: 600;
+		}
+
+		.widget {
+			background-color: #eee;
+			padding: 5px;
+			margin-top: 10px;
+		}
+
+		.widget h3 {
+			font-size: 14px;
+			color: #999;
+		}
+
+		.widget h3 a {
+			font-size: 14px;
+			color: #999;
+			text-decoration: none;
+		}
+
+		.widget .rsswidget img {
+			display: none;
+		}
+
+		#google_translate_element select {
+			width: 180px;
+		}
+	</style>
+</head>
+
+<body class="post-template-default single single-post postid-727 single-format-standard 727">
+	<header role="banner">
+		<div class="blog-title">
+			<div style="background-color: #bbb; padding-left: 30px; padding-bottom: 2px; padding-top: 2px;">
+				<h1>Gondolatok (Fazekas László blogja)</h1>
+				<p>Bármi ami épp folgalkoztat</p>
+			</div>
+		</div>
+	</header>
+	<div class="wrap container" role="document">
+		<div class="content row blog-content">
+			<div class="span2 hidden-phone hidden-tablet" style="margin-left: 70px;"></div>
+			<div class="span7" style="margin-left: 0px;" role="main">
+				<article class="post-727 post type-post status-publish format-standard hentry category-nincs-kategorizalva">
+					<header>
+						<h1 class="entry-title">Blockchain a BitCoinon túl (NameCoin, Ethereum)</h1>
+					</header>
+					<div class="entry-content">
+						Egy előző bejegyzésemben (<a href="http://lf.estontorise.hu/archives/662" target="_blank" rel="nofollow noopener noreferrer">http://lf.estontorise.hu/archives/662</a>) írtam arról, hogy hogyan működik a BitCoin alapjául szolgáló blockchain (blokklánc). A blockchain tulajdonképpen egy decentralizált rendszer felett működő rendkívül megbízható adatbázis. De ha van egy ilyen adatbázisunk, miért csak tranzakciókat tárolnánk benne? És egyáltalán mit érdemes még blockchainben tárolni? Ebben a bejegyzésben erre mutatnék két megvalósítást, amiken keresztül megérthetjük ezeknek az alternatív, blokklánc alapú rendszereknek a működését.
+Az egyik legelső ilyen blokklánc megvalósítás a NameCoin (<a href="https://namecoin.org/" target="_blank" rel="nofollow noopener noreferrer">https://namecoin.org/</a>) volt, ahol nevekhez rendelhetünk IP címeket, amivel egyfajta decentralizált DNS szolgáltatás valósul meg. (Valójában ennél sokkal általánosabb dologról van szó, mivel a nevekhez bármilyen adatot [pl. digitális aláírást, ZeroNet címet, stb.] hozzárendelhetünk.) Egy ilyen decentralizált DNS szolgáltatás hasonló előnyökkel rendelkezik, mint a BitCoin. Tehát nem birtokolja senki, nem lehet a nevekhez rendelt weblapokat letiltani, a neveket átirányítani, stb. A BitCoin tranzakciókhoz hasonlóan a NameCoin blockchainben rögzített neveket is digitális aláírás hitelesíti, így a kontroll a BitCoinhoz hasonlóan kizárólag az aláírás birtokosáé. Minden blockchain megvalósításra igaz, hogy más adatbázishoz hasonlóan azt üzemeltetni kell. Ez ugye azt jelenti, hogy az egyes bejegyzéseket blokkokba kell gyűjteni, és a lánc végére fűzni. Ez számításigényes feladat, amit valamiképp honorálni kell, különben nem érné meg senkinek csinálni. Ráadásul mindennek anonimnak és automatikusnak kell lennie. Éppen ezért, ahogy a BitCoin esetén, úgy a NameCoin esetén is minden blokk generálásakor kriptovaluta termelődik. Valójában ezt a valutát hívják NameCoinnak. Ha valaki be szeretne jegyeztetni egy nevet a NameCoin blockchainbe, annak NameCoinal kell ezért fizetnie. NameCoint pedig a BitCoin-hoz hasonlóan vásárolni lehet (jellemzően BitCoin-ért). Igazából mind a BitCoin, mind a NameCoin, és minden más kriptovaluta (altcoinok) olyasmi mint ha részvényt vásárolnánk egy cégben. Ez a NameCoin esetén különösen jól nyomon követhető. Mikor megalkották a NameCoint, a tagok nem kaptak semmit a befektetett számítási kapacitásukért, csupán (akkor értéktelen) NameCoint. Ez azzal analóg, mikor az alapítók, és befektetők pénzt nyomnak egy cégbe valamennyi tulajdonrészért cserébe, annak reményében, hogy ebből lesz majd valami. Ezt követően az emberek elkezdték használni a NameCoin blokkláncát, ahová úgy jegyezhettek be neveket, hogy NameCoint vettek. A NameCoin a név bejegyzésekor (vagy meghosszabbításakor, mert a nevek idővel lejárnak) eltűnik, így bezárul a kör. Így jutnak tehát végül pénzhez azok, akik működtetik a blockchaint. Eladják az előzőleg megtermelt NameCoinjaikat azoknak, akik használni kívánják a rendszert. Pontosan úgy, mikor a befektető pénzhez jut abból, hogy eladja az adott cégben birtokolt üzletrészét. Ez a működési mechanizmusa a NameCoinnak, a BitCoinnak, és minden más kriptovalutának. Most, hogy a NameCoin példáján láttuk, hogy a blockchain nem csak tranzakciók tárolására jó, lássunk egy még érdekesebb megvalósítást, az Ethereumot, amit sokan csak blockchain 2.0-nak neveznek.
+Az Ethereum (<a href="https://www.ethereum.org/" target="_blank" rel="nofollow noopener noreferrer">https://www.ethereum.org/</a>) úgymond tökélyre fejlesztette a blockchain használatát. Itt ugyanis nem csak "száraz" adatokat tárolhatunk a blokkláncban, hanem futtatható kódot is. Éppen ezért az Ethereumra szoktak úgy is hivatkozni, mint valamiféle nagy, decentralizált, virtuális számítógép. Ezeket a futtatható kódokat okos szerződéseknek (smart contract) hívják, mert sok esetben ezek egyfajta nagyon pontosan specifikált megegyezések partnerek közt (hasonló mint egy szerződés). A smart contractok saját számlával rendelkeznek, és birtokolhatnak pénzt, amihez csak "ők" férnek hozzá. Ilyen smart contractra jó példa lehet egy közösségi finanszírozás (crowd founding) kampány. A szerződésben ilyen esetben le lehet programozni, hogy gyűjtse a pénzt, és csak abban az esetben utalja tovább a kampányt indítónak, ha adott időre összegyűlt a megfelelő összeg, ellenkező esetben utalja vissza a befizetőknek azt. Mivel a szerződés kódja mindenki számára nyílt, így nem kell megbízniuk a közösségi finanszírozás indítójában. Hasonló példa, ha valaki el akarja adni a házát. Itt ha a fizetés történik először, félő, hogy az eladó lelép a pénzzel, míg ha az ingatlan átruházása, akkor félő, hogy a vevő nem fizet. Emiatt aztán szükség van egy megbízható harmadik félre, egy ügyvédre, aki komoly pénzért letétben tartja az ingatlan átruházásáról szóló papírokat, és csak akkor adja ki a vevőnek, ha az valóban átutalta a pénzt. Ezért az amúgy nem túl bonyolult szolgáltatásért pedig igen komoly pénzeket szoktak elkérni. Az Ethereum segítségével az ügyvéd kiváltható egy smart contracttal, ami akkor és csakis akkor hitelesíti az ingatlan átruházási papírokat, ha a vevő fizetett. Számtalan példát lehetne még felhozni ilyen okos szerződésekre, de az Ethereum lehetőségei ezen messze túlmutatnak. Mostanában gyakran kerül elő a blockchain IoT (dolgok internete) irányú felhasználásának lehetősége. Gondoljunk például egy okos zárra (IoT), amit egy ilyen Etereumon futtatott program vezérel. Ha valaki fizet a programnak (szándékosan nem nevezem a továbbiakban okos szerződésnek) és a szoba szabad, úgy kinyitja a zárat. Ezzel egyfajta önműködő AirBnB szolgáltatást hozhatunk létre, ahol kvázi a szoba saját magát adja bérbe. Hasonló konstrukció megvalósítható például önjáró autókkal is, ahol az autó saját magát adja bérbe, ezzel egyfajta Uber szolgáltatást megvalósítva. Ezek ember-gép (én fizetek egy tárgynak) interakciók voltak, de elképzelhetőek gép-gép interakciók is. Például a mosógép áramot vásárol a szomszéd ház napelem rendszerétől, ahol épp többlet van, mert nagyon süt a nap. Mindezt azért teszi, mert így olcsóbban juthat energiához, mintha azt az áramszolgáltatótól vásárolná. A dolog teljesen automatikus. A felhasználók csak annyit vesznek észre az egészből, hogy villanyszámlájuk radikálisan lecsökkent. Látható tehát, hogy mivel az Ethereum programozási nyelve általános (Turing teljes), ezért nagyon sok minden megvalósítható vele. Nem csak okos szerződések, hanem akár saját kriptovaluta, teljesen önműködő cégek ("decentralizált automata cég" avagy DAO - <a href="https://en.wikipedia.org/wiki/Decentralized_autonomous_organization" target="_blank" rel="nofollow noopener noreferrer">https://en.wikipedia.org/wiki/Decentralized_autonomous_organization</a>), vagy akár egész virtuális államok (<a href="https://en.wikipedia.org/wiki/Bitnation" target="_blank" rel="nofollow noopener noreferrer">https://en.wikipedia.org/wiki/Bitnation</a>) is leprogramozhatóak. Mivel ezek a hálózatok központi ellenőrzés nélkül, decentralizált módon, egyenrangú partnerek által futnak, ezért teljesen autonóm entitások, az emberi kontrolltól mentesek. Egy Uber vagy AirBnB DAO-t nem lehet csak úgy kitiltani egy országból, vagy extra adót kivetni rá. Ez már az okos ökoszisztémák emberétől független társadalma. Persze hogy mit hoz a jövő, azt senki nem tudhatja, de az sem teljesen elképzelhetetlen, hogy létrejöhetnek egyszer Charles Stross - Accelerandó c. könyvében (<a href="https://hu.wikipedia.org/wiki/Accelerando_(reg%C3%A9ny))" target="_blank" rel="nofollow noopener noreferrer">https://hu.wikipedia.org/wiki/Accelerando_(reg%C3%A9ny))</a> vizionált önálló, intelligens cégek.
+Bárhogy is legyen, érdemes látni, hogy a blockchain területén van élet a BitCoinon túl is, és ez messze túlmutat a kriptovaluták világán...
+					</div>
+					<footer>
+						<p><br/>Originally published at <a href="http://lf.estontorise.hu/archives/685">http://lf.estontorise.hu/archives/685</a> on 2017-06-03 12:32:03.</p>
+					</footer>
+				</article>
+			</div><!-- /.main -->
+			<aside role="complementary">
+				<div class="span3" style="width: 190px; opacity: 0.6; font-size: 10px;">
+					<div style="background-color: #eee; padding: 5px;"><a rel="author" href="https://plus.google.com/115334992192871078712?rel=author" target="_blank">
+							<img src="../assets/img/profile.jpg" class="img-rounded" alt="Laszlo Fazekas (TheBojda) - Szabad�sz� Android, PHP, J2EE fejleszt?">
+						</a>
+						<div data-href="//plus.google.com/115334992192871078712" data-rel="author" style="display: none;"></div>
+						<p style="margin-top: 10px;">
+							Szabadúszó fejlesztőként dolgozom már jópár éve. Főleg J2EE, Android, és PHP projekteket vállalok, de sok más technológiába belekóstoltam már.
+							Bővebb információért olvasd el <a href="../assets/fazekas_laszlo_cv_hu.pdf">szakmai önéletrajzomat</a>.</p>
+						<p>Hobbim a programozás mellett az olvasgatás. Főleg a természettudományok érdekelnek, azon belül is leginkibb a fizika.</p>
+						<p>A jelenlegi mellett van egy új blogom <a href="https://medium.com/@thebojda">Medium</a>-on, egyéb gondolataimat, vagy az általam érdekesnek talált cikkeket/híreket pedig általában <a
+								href="https://plus.google.com/115334992192871078712">Google+</a>-on osztom meg. A jobb bejegyzéseknek kicsatornáztam egy külön blogba, amit a <a href="http://gp.estontorise.hu/" target="_blank">gp.estontorise.hu</a>
+							címen érhetsz el. Ha nem használod a Google+-t, de szeretnél követni, akkor megteheted <a href="https://www.facebook.com/laszlofazekas.googleplus" target="_blank">Facebook</a>-on, vagy <a
+								href="https://twitter.com/TheBojda" target="_blank">Twitteren</a> is. E-mailben pedig a <a id="email" href="#"></a> címen érhetsz el.</p>
+						<script>var mail = document.getElementById("email"); mail.innerHTML = "laszlo" + "." + "fazekas" + "@" + "estotorise." + "hu";</script>
+						<p>
+							<a href="https://twitter.com/TheBojda" target="_blank"><img src="../assets/img/twitter.png" alt="twitter" /></a>
+							<a href="https://github.com/TheBojda" target="_blank"><img src="../assets/img/github.png" alt="github" /></a>
+						</p>
+					</div>
+				</div>
+			</aside><!-- /.sidebar -->
+		</div><!-- /.content -->
+	</div><!-- /.wrap -->
+	<script type="text/javascript">
+		user = 'mailto:' + 'laszlo' + '.' + 'fazekas';
+		document.getElementById('email').href = user + '@' + 'estontorise' + '.hu';
+	</script>
+</body>
+
+</html>

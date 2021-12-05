@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="hu"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang="hu"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="hu"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="hu">
+<!--<![endif]-->
+
+<head>
+	<meta charset="utf-8">
+	<title>Samsung Galaxy Spica frissítése Android 2.2-re (Froyo-ra) - Gondolatok (Fazekas László blogja)</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="keywords" content="Android, Android fejlesztő, Android programozó, Gondolatok, Fazekas László, PHP, PHP fejlesztő, J2EE, Java, J2EE fejelsztő, szabadúszó, programozó" />
+	<meta name="description" content="Gondolatok - Fazekas László blogja" />
+	<meta name="robots" content="index, follow, max-video-preview:-1, max-snippet:-1, max-image-preview:large" />
+	<meta property="og:locale" content="hu_HU" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="Samsung Galaxy Spica frissítése Android 2.2-re (Froyo-ra)" />
+	<meta property="og:description" content="Samsung Galaxy Spica frissítése Android 2.2-re (Froyo-ra)" />
+	<meta property="og:site_name" content="Gondolatok (Fazekas László blogja)" />
+	<meta property="article:published_time" content="2011-10-14 20:18:19" />
+	<meta property="article:modified_time" content="2012-06-25 18:36:10" />
+	<link rel="stylesheet" href="../assets/css/bootstrap.css">
+	<link rel="stylesheet" href="../assets/css/bootstrap-responsive.css">
+	<link rel="stylesheet" href="../assets/css/app.css">
+	<style>
+		.blog-title {
+			opacity: 0.1;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			width: 100%;
+			-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";
+			filter: alpha(opacity=10);
+		}
+
+		.blog-title h1 {
+			font-size: 30px;
+			line-height: 30px;
+			color: #000;
+		}
+
+		.blog-title p {
+			font-size: 20px;
+			color: #000;
+		}
+
+		.blog-content {
+			color: rgb(77, 77, 77);
+			font-family: 'proxima-nova', sans-serif;
+			font-weight: 500;
+			line-height: 1.5em;
+			font-size: 16px;
+		}
+
+		.blog-content h2 a {
+			font-size: 25px;
+			line-height: 25px;
+			color: rgb(58, 58, 58);
+			font-weight: 600;
+		}
+
+		.blog-content h1 {
+			font-size: 30px;
+			line-height: 30px;
+			color: rgb(58, 58, 58);
+			font-weight: 600;
+		}
+
+		.widget {
+			background-color: #eee;
+			padding: 5px;
+			margin-top: 10px;
+		}
+
+		.widget h3 {
+			font-size: 14px;
+			color: #999;
+		}
+
+		.widget h3 a {
+			font-size: 14px;
+			color: #999;
+			text-decoration: none;
+		}
+
+		.widget .rsswidget img {
+			display: none;
+		}
+
+		#google_translate_element select {
+			width: 180px;
+		}
+	</style>
+</head>
+
+<body class="post-template-default single single-post postid-727 single-format-standard 727">
+	<header role="banner">
+		<div class="blog-title">
+			<div style="background-color: #bbb; padding-left: 30px; padding-bottom: 2px; padding-top: 2px;">
+				<h1>Gondolatok (Fazekas László blogja)</h1>
+				<p>Bármi ami épp folgalkoztat</p>
+			</div>
+		</div>
+	</header>
+	<div class="wrap container" role="document">
+		<div class="content row blog-content">
+			<div class="span2 hidden-phone hidden-tablet" style="margin-left: 70px;"></div>
+			<div class="span7" style="margin-left: 0px;" role="main">
+				<article class="post-727 post type-post status-publish format-standard hentry category-nincs-kategorizalva">
+					<header>
+						<h1 class="entry-title">Samsung Galaxy Spica frissítése Android 2.2-re (Froyo-ra)</h1>
+					</header>
+					<div class="entry-content">
+						Mindenek előtt köszönet Maczák Balázsnak, aki felhívta a figyelmem az új firmware verzióra. Nélküle nem készült volna el ez a bejegyzés.
+
+No de miért is érdemes firmware-t frissíteni? A Galaxy Spica egy jó ár/érték arányú Androidos belépő telefon. Annak idején, mikor még én vettem az enyémet, olyan 60 000 Ft körül lehetett megkapni (jelenleg olyan 30 000-40 000 Ft körül lehet) 1.5-ös Android firmware-el. Időközben aztán az ember kinövi. Jó lenne magasabb verziós Android, lehetne kicsit gyorsabb, hiányzik a multitouch támogatás, vagy a programok sd kártyára helyezésének lehetősége (nekem ez utóbbi kettő hiányzott leginkább). Ilyenkor az ember első gondolata, hogy cseréljük le a jó öreg Spica-t valami újabb modellre. Pedig sokan nem tudják, milyen tartalékok vannak ebben a kis eszközben. Kis bátorsággal körülbelül fél óra alatt a fenti feature-ök közül mind elérhetővé tehető a telefonon. Igen, a multitouch is! Régebben úgy gondoltam, hogy a Spica-n hardver okokból nem elérhető ez a lehetőség, de egy sima szoftver frissítés után ez is remekül működik. Nézzük hát, mi a frissítés folyamata.
+
+Elsőként root-olni kell a telefont, amihez itt (<a href="http://www.addictivetips.com/mobile/root-samsung-galaxy-spica-i5700-with-leshaks-kernel/">http://www.addictivetips.com/mobile/root-samsung-galaxy-spica-i5700-with-leshaks-kernel/</a>) megtalálhatunk minden szükséges kelléket.
+<ol>
+	<li>Mielőtt bármihez kezdenénk, az sd kártya root könyvtárába másoljuk fel az  LK2-02-1_update.zip állományt.</li>
+	<li>Töltsük le az Odin-t innen (<a href="http://cloud.addictivetips.com/wp-content/uploads/android/samsung/galaxy-spica/Odin_v4_03.zip">cloud.addictivetips.com/wp-content/uploads/android/samsung/galaxy-spica/Odin_v4_03.zip</a>).</li>
+	<li>Kapcsoljuk ki a telefont, majd a hangerő szabályzó gombot lefelé nyomva és a fényképező gombot nyomva tartva nyomjuk meg hosszan a hívás bontás gombot. Így bekapcsolva a telefont az download módba kerül.</li>
+	<li>Az Odin-ban nyomjuk meg a Reset files gombot, majd az ops részbe tallózzuk be a spica_jc3.ops fájlt (ezt az Odin-hoz csomagolva megtaláljuk).</li>
+	<li>Bontsuk ki a i5700_LK2-02_PDA.zip állományt, és a tartalmát tallózzuk be a PDA részhez.</li>
+	<li>Nyomjuk meg a Start gombot. Ekkor az Odin feltölti a telefonra az új loadert.</li>
+	<li>Ha az Odin végzett, a telefonon megjelenik egy menü, ahol az 'Apply any zip from SD' opcióval kiválaszthatjuk az előzőleg oda másolt zip-et.</li>
+	<li>Újraindítás után van egy root-olt telefonunk, tehát félig megvagyunk.</li>
+</ol>
+Root-olást követően már könnyedén telepíthetünk új ROM-ot. A Samdroid ROM 2.2-es változatát innen (<a href="http://forum.samdroid.net/f53/samdroidmod-2-2-1-a9-froyo-aosp-i5700-3017/">http://forum.samdroid.net/f53/samdroidmod-2-2-1-a9-froyo-aosp-i5700-3017/</a>) tölthetjük le, de a <a href="http://en.wikipedia.org/wiki/Samsung_i5700">Wikipedia-n</a> találhatunk néhány hasznos linket más ROM-okra. A ROM telepítéséhez végezzük el a következő néhány lépést:
+<ol>
+	<li>Másoljuk fel a ROM állományt az sd kártyára.</li>
+	<li>Indítsuk el a telefont recovery módban a hangerő szabályzót lefelé nyomva, valamint a hívás fogadás és bontás gombokat egyszerre nyomva tartva. Ilyenkor előjön a boot menü, amivel már találkoztunk.</li>
+	<li>Ha akarunk, itt készíthetünk backupot a jelenlegi rendszerről, de mivel jó esetben a címlista, a naptár bejegyzések, és a többi hasznos dolog a Google szervereire is le van szinkronizálva, erre sokszor nincs is szükség.</li>
+	<li>Van egy Wipe data & cache menüpont, ezzel tisztára törölhetjük a telefon memóriát.</li>
+	<li>Válasszuk ki a ROM zip-et az sd kártyáról az Apply menüpont használatával.</li>
+	<li>A frissítés utáni reboot, és néhány percnyi várakozás után (4-5x újra fog indulni a telefon, addig hagyjuk békén, ellesz magában) a szépséges új 2.2-es Android UI fogad minket.</li>
+</ol>
+Ennyi az egész. Az egész procedúra körülbelül 15 percig tart, és a végén egy megújult telefon fogad minket. Telepíthetünk alkalmazásokat SD kártyára, használhatjuk a 2 ujjas nagyítást, és a 2.2-es Android virtuális gépébe bekerült JIT-nek köszönhetően sok alkalmazásunk is gyorsabban fog futni (2-3x-os gyorsulás is tapasztalható bizonyos alkalmazások esetén). Szerintem mindenképp megéri ...
+
+UPDATE: A fenti leírásnak megfelelően én sikerrel frissítettem a Spica-mat minden probléma nélkül. A hozzászólásokban azonban sokan arra panaszkodnak, hogy megállt a telepítés, vagy más ok miatt nem jártak sikerrel. Sajnos ezen problémák megoldására nincs ötletem, mivel én ilyen problémákba nem ütköztem, és sem a frimware-hez, sem a feltöltő eszközökhöz nincs semmi közöm. Én is idegen nyelvű fórumok alapján végeztem el a telepítést, és ebben a bejegyzésben csak a tapasztalataimat osztottam meg. A legjobb amit tanácsolni tudok, hogy akinek problémája van a telepítéssel, az a samdroid fórumban tegye fel a kérdéseit a fejlesztőknek.
+					</div>
+					<footer>
+						<p><br/>Originally published at <a href="http://lf.estontorise.hu/archives/186">http://lf.estontorise.hu/archives/186</a> on 2011-10-14 20:18:19.</p>
+					</footer>
+				</article>
+			</div><!-- /.main -->
+			<aside role="complementary">
+				<div class="span3" style="width: 190px; opacity: 0.6; font-size: 10px;">
+					<div style="background-color: #eee; padding: 5px;"><a rel="author" href="https://plus.google.com/115334992192871078712?rel=author" target="_blank">
+							<img src="../assets/img/profile.jpg" class="img-rounded" alt="Laszlo Fazekas (TheBojda) - Szabad�sz� Android, PHP, J2EE fejleszt?">
+						</a>
+						<div data-href="//plus.google.com/115334992192871078712" data-rel="author" style="display: none;"></div>
+						<p style="margin-top: 10px;">
+							Szabadúszó fejlesztőként dolgozom már jópár éve. Főleg J2EE, Android, és PHP projekteket vállalok, de sok más technológiába belekóstoltam már.
+							Bővebb információért olvasd el <a href="../assets/fazekas_laszlo_cv_hu.pdf">szakmai önéletrajzomat</a>.</p>
+						<p>Hobbim a programozás mellett az olvasgatás. Főleg a természettudományok érdekelnek, azon belül is leginkibb a fizika.</p>
+						<p>A jelenlegi mellett van egy új blogom <a href="https://medium.com/@thebojda">Medium</a>-on, egyéb gondolataimat, vagy az általam érdekesnek talált cikkeket/híreket pedig általában <a
+								href="https://plus.google.com/115334992192871078712">Google+</a>-on osztom meg. A jobb bejegyzéseknek kicsatornáztam egy külön blogba, amit a <a href="http://gp.estontorise.hu/" target="_blank">gp.estontorise.hu</a>
+							címen érhetsz el. Ha nem használod a Google+-t, de szeretnél követni, akkor megteheted <a href="https://www.facebook.com/laszlofazekas.googleplus" target="_blank">Facebook</a>-on, vagy <a
+								href="https://twitter.com/TheBojda" target="_blank">Twitteren</a> is. E-mailben pedig a <a id="email" href="#"></a> címen érhetsz el.</p>
+						<script>var mail = document.getElementById("email"); mail.innerHTML = "laszlo" + "." + "fazekas" + "@" + "estotorise." + "hu";</script>
+						<p>
+							<a href="https://twitter.com/TheBojda" target="_blank"><img src="../assets/img/twitter.png" alt="twitter" /></a>
+							<a href="https://github.com/TheBojda" target="_blank"><img src="../assets/img/github.png" alt="github" /></a>
+						</p>
+					</div>
+				</div>
+			</aside><!-- /.sidebar -->
+		</div><!-- /.content -->
+	</div><!-- /.wrap -->
+	<script type="text/javascript">
+		user = 'mailto:' + 'laszlo' + '.' + 'fazekas';
+		document.getElementById('email').href = user + '@' + 'estontorise' + '.hu';
+	</script>
+</body>
+
+</html>

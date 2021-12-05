@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="hu"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang="hu"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="hu"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="hu">
+<!--<![endif]-->
+
+<head>
+	<meta charset="utf-8">
+	<title>GitHub, avagy közösségi kódolás - Gondolatok (Fazekas László blogja)</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="keywords" content="Android, Android fejlesztő, Android programozó, Gondolatok, Fazekas László, PHP, PHP fejlesztő, J2EE, Java, J2EE fejelsztő, szabadúszó, programozó" />
+	<meta name="description" content="Gondolatok - Fazekas László blogja" />
+	<meta name="robots" content="index, follow, max-video-preview:-1, max-snippet:-1, max-image-preview:large" />
+	<meta property="og:locale" content="hu_HU" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="GitHub, avagy közösségi kódolás" />
+	<meta property="og:description" content="GitHub, avagy közösségi kódolás" />
+	<meta property="og:site_name" content="Gondolatok (Fazekas László blogja)" />
+	<meta property="article:published_time" content="2012-08-04 07:51:12" />
+	<meta property="article:modified_time" content="2019-12-04 09:41:43" />
+	<link rel="stylesheet" href="../assets/css/bootstrap.css">
+	<link rel="stylesheet" href="../assets/css/bootstrap-responsive.css">
+	<link rel="stylesheet" href="../assets/css/app.css">
+	<style>
+		.blog-title {
+			opacity: 0.1;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			width: 100%;
+			-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";
+			filter: alpha(opacity=10);
+		}
+
+		.blog-title h1 {
+			font-size: 30px;
+			line-height: 30px;
+			color: #000;
+		}
+
+		.blog-title p {
+			font-size: 20px;
+			color: #000;
+		}
+
+		.blog-content {
+			color: rgb(77, 77, 77);
+			font-family: 'proxima-nova', sans-serif;
+			font-weight: 500;
+			line-height: 1.5em;
+			font-size: 16px;
+		}
+
+		.blog-content h2 a {
+			font-size: 25px;
+			line-height: 25px;
+			color: rgb(58, 58, 58);
+			font-weight: 600;
+		}
+
+		.blog-content h1 {
+			font-size: 30px;
+			line-height: 30px;
+			color: rgb(58, 58, 58);
+			font-weight: 600;
+		}
+
+		.widget {
+			background-color: #eee;
+			padding: 5px;
+			margin-top: 10px;
+		}
+
+		.widget h3 {
+			font-size: 14px;
+			color: #999;
+		}
+
+		.widget h3 a {
+			font-size: 14px;
+			color: #999;
+			text-decoration: none;
+		}
+
+		.widget .rsswidget img {
+			display: none;
+		}
+
+		#google_translate_element select {
+			width: 180px;
+		}
+	</style>
+</head>
+
+<body class="post-template-default single single-post postid-727 single-format-standard 727">
+	<header role="banner">
+		<div class="blog-title">
+			<div style="background-color: #bbb; padding-left: 30px; padding-bottom: 2px; padding-top: 2px;">
+				<h1>Gondolatok (Fazekas László blogja)</h1>
+				<p>Bármi ami épp folgalkoztat</p>
+			</div>
+		</div>
+	</header>
+	<div class="wrap container" role="document">
+		<div class="content row blog-content">
+			<div class="span2 hidden-phone hidden-tablet" style="margin-left: 70px;"></div>
+			<div class="span7" style="margin-left: 0px;" role="main">
+				<article class="post-727 post type-post status-publish format-standard hentry category-nincs-kategorizalva">
+					<header>
+						<h1 class="entry-title">GitHub, avagy közösségi kódolás</h1>
+					</header>
+					<div class="entry-content">
+						Aki foglalkozott már nyílt forrású projektek fejlesztésével, az valószínűleg belefutott már a problémába, hogy ha elkészült, a végeredményt hogy ossza meg másokkal. Az egyik lehetőség, hogy összerakhatunk erre egy saját honlapot, beállítunk saját verziókezelő és hibajegy kezelő rendszert, stb. Ez adott esetben elég sok munka, sok karbantartást igényel, és többnyire felesleges is. A másik lehetőség, hogy választunk valamilyen project hosting rendszert, ahol mindez adott. Több ilyen rendszer is létezik, és mind ingyenesen elérhető. A legismertebbek talán a <a href="http://sourceforge.net/">SourceForge</a>, a <a href="http://code.google.com/hosting/">Google Project Hosting</a>, és egy viszonylag új játékos, a <a href="https://github.com/">GitHub</a>. Ez utóbbiról fogok kicsit bővebben írni, mivel véleményem szerint ez a jelenleg elérhető legjobb ilyen rendszer.
+
+De mégis mit nyújt egy ilyen project hosting rendszer, és mi az ami ezek közül kiemeli a GitHub-ot? Egy project hosting rendszer többnyire mindent készen nyújt, ami egy nyílt forrású rendszer publikálásához, és karbantartásához kell. Alapvetően mindenhol kapunk egy verziókezelő rendszert, valamilyen hibajegy kezelő rendszert (issue tracker), és valami wiki féleséget, ahol leírásokat és dokumentációt készíthetünk a rendszerhez. Így tulajdonképpen minden adott, ami egy ilyen projekt futtatásához szükséges. De mi az, amiben a GitHub különleges? Először is, más rendszerekkel ellentétben a GitHub egyfajta közösségi tér is. Regisztrált felhasználóként feliratkozhatunk az egyes projektekhez megfigyelőként, így értesülhetünk a projektet érintő változásokról. Ha nagyon hasonlítani akarnám valamihez, azt mondhatnám, hogy olyan ez, mint a nyílt forrású projektek Facebook-ja. A történések itt is egy newsfeed-ben gyűlnek össze, minden felhasználónak van profilja, stb. Igazából mindezek a lehetőségek más rendszerekben is adottak, de míg mondjuk a Google rendszerében RSS feed-ekkel kell bajlódnunk, addig itt tényleg minden olyan könnyedén megy, mint Facebook-on. Csak bekattintjuk a projektet, és már ott is van a newsfeed-ben. Ez egyébként az egész rendszerre igaz, hogy az egyszerű és logikus felépítésre törekedtek, nem kell geek-nek lenni a használatához (pl. nem kell RSS feed-ekkel bajlódni). A GitHub igazán nagy dobása azonban nem a könnyű használhatóság, vagy a szociális háló szerű felépítés, hanem a rendszer nevét is adó <a href="http://hu.wikipedia.org/wiki/Git">Git</a> nevű verziókezelő hatékony használata.
+
+A Git egy elosztott verziókezelő rendszer. Ilyenekről már írtam kicsit a <a href="http://lf.estontorise.hu/archives/164">Mercurial</a> kapcsán. Röviden annyi a lényeg, hogy más központosított rendszerekhez képest (pl. SVN) itt nem egy központi repository-ba dolgoznak a fejlesztők. E helyett mindenkinek saját lokális repository-ja van. Ide tologatja be a módosításokat, majd ha kész van egy részfeladat, a munkáját beszinkronizálja egy  központi repositroy-ba. Mivel ez a repository is pont olyan, mint a lokális, ezért akár ennek a tartalmát is betolhatjuk egy harmadik repository-ba, és így tovább, akár egész bonyolult hierarchiákat is felépítve ezekből. Ezek a repository-k ráadásul teljesen egyenértékűek, és nem csak "tolni" lehet a változásokat, hanem "húzni" is. Tehát ha van egy repository-nk, annak a tartalmát vagy "kitoljuk" (push) a másik repository-ba, vagy a másik repository-ból "húzzuk" át (pull) a változásokat. Igazából a Git-ről nagyon sokat lehetne írni, de nem akarok nagyon elkalandozni ebbe az irányba, mivel a bejegyzés célja a GitHub rövid ismertetése. De lássuk, miért is olyan jó nekünk ez a Git? Egy hagyományos, SVN-t használó open source projektnél ha szeretnénk hozzájárulni a projekthez új fejlesztéssel, vagy hibajavítással, akkor le kell töltenünk a repository tartalmát, elvégezni a módosításokat, majd generálni egy patch-t. Ezt aztán e-mailben, vagy a hibajegy kezelő rendszeren keresztül eljuttatni a fejlesztőkhöz, akik aztán vagy merge-ölik ezt a projektbe, vagy nem. Ez összességében elég nagy macera (patch generálgatás, levelezgetés, stb.), és jó eséllyel el is megy a fejlesztő kedve a projekthez való hozzájárulástól. A GitHub-on viszont találtak erre egy nagyon jó megoldást, amit a Git tesz lehetővé. Ha itt valaki hozzá akar járulni egy projekthez, egyszerűen leklónozza (forkolja) azt. Így egyetlen gombnyomásra élből lesz egy saját repository példánya a projektből (ezt a Git azért okosan tárolja, hogy ne legyen nagy a redundancia). A saját repository-val aztán azt tesz a fejlesztő, amit akar. Alapesetben végrehajtja a fejlesztést, majd (és itt van a trükk) a projekt gazdájának küld egy pull request-et. Ez tulajdonképpen egy rendszeren belüli üzenet, amiben a hozzájáruló fejlesztő leírja, hogy milyen fejlesztéseket/hibajavításokat végzett. Ha a projekt gazda egyet ért a fejlesztésekkel, akkor áthúzza azt a saját repository-jába (ilyenkor szükség lehet merge-ölésre, amiben viszont a Git eleve jobb, mint az SVN). A lényeg tehát, hogy itt nem kell patch-eket generálgatni, nem kell levelezgetni, mindent ellehet intézni néhány kattintással a rendszeren belül, ez pedig egy sokkal barátságosabb módja a projekthez való hozzájárulásnak.
+
+Most, hogy ismerjük a GitHub alapvető logikáját, lássuk mi kell a használatához. Ha Windows rendszert használunk, akkor a legegyszerűbb, ha letöltjük a GitHub klienst. Ez egy kis program, amivel néhány kattintással létrehozhatunk egy lokális repository-t a számítógépünk egyik mappájában, amit aztán ugyancsak pár kattintással fel is tölthetünk a GitHub-ra. Ez igazából alapvető számítógépes ismereteknél nem kíván sokkal többet, így a segítségével bárki könnyen kihasználhatja a GitHub által szolgáltatott lehetőségeket. Ha feltöltöttük a projektünket, az Admin oldalon nagyon pofás kis honlapot generálhatunk neki, ami ráadásul ugyanúgy Git-ben tárolódik, tehát később a hozzájárulók a programkódhoz hasonlóan a honlap tartalmát is bővíthatik, vagy javíthatják.
+
+Hát, körülbelül ennyit szerettem volna írni a GitHub-ról. Látható, hogy igazából nem kapunk semmi olyat, amit így vagy úgy ne lehetne más rendszerekkel megvalósítani, ugyanakkor tény, hogy egy rendszert sem ismerek, ami a GitHub-nál egyszerűbb és kényelmesebb módon valósítaná meg mindezt. Ezért gondolom, hogy a GitHub a jelenleg elérhető legjobb projekt hosting rendszer, és ezért gondolják ezt mások is (pl. az Android forráskódját is a GitHub hosztolja). Remélem sikerült egy kis kedvet csinálni a rendszer kipróbálásához, és majdani használatához.
+
+Időközben készült még egy írás Git és GitHub témakörben, ami kicsit jobban körbejárja a rendszer működését. Ha érdekel, itt elolvashatod: <a href="https://medium.com/envienta-magyarorsz%C3%A1g/git-%C3%A9s-github-gyorstalpal%C3%B3-f2d78a732deb">https://medium.com/envienta-magyarorsz%C3%A1g/git-%C3%A9s-github-gyorstalpal%C3%B3-f2d78a732deb</a>
+
+Akit bővebben érdekel a téma, annak <a href="https://plus.google.com/104695723888883478740/posts">+Balazs Nadasdi</a> <a href="http://dev.folyam.info/blog/2013/03/01/csapatmunka-github-segitsegevel/">Csapatmunka GitHub segítségével</a> című írását ajánlanám a továbblépéshez. Ez egy nagyon átfogó (szerintem jelenleg a magyar nyelven elérhető legátfogóbb) leírás a témában.
+					</div>
+					<footer>
+						<p><br/>Originally published at <a href="http://lf.estontorise.hu/archives/288">http://lf.estontorise.hu/archives/288</a> on 2012-08-04 07:51:12.</p>
+					</footer>
+				</article>
+			</div><!-- /.main -->
+			<aside role="complementary">
+				<div class="span3" style="width: 190px; opacity: 0.6; font-size: 10px;">
+					<div style="background-color: #eee; padding: 5px;"><a rel="author" href="https://plus.google.com/115334992192871078712?rel=author" target="_blank">
+							<img src="../assets/img/profile.jpg" class="img-rounded" alt="Laszlo Fazekas (TheBojda) - Szabad�sz� Android, PHP, J2EE fejleszt?">
+						</a>
+						<div data-href="//plus.google.com/115334992192871078712" data-rel="author" style="display: none;"></div>
+						<p style="margin-top: 10px;">
+							Szabadúszó fejlesztőként dolgozom már jópár éve. Főleg J2EE, Android, és PHP projekteket vállalok, de sok más technológiába belekóstoltam már.
+							Bővebb információért olvasd el <a href="../assets/fazekas_laszlo_cv_hu.pdf">szakmai önéletrajzomat</a>.</p>
+						<p>Hobbim a programozás mellett az olvasgatás. Főleg a természettudományok érdekelnek, azon belül is leginkibb a fizika.</p>
+						<p>A jelenlegi mellett van egy új blogom <a href="https://medium.com/@thebojda">Medium</a>-on, egyéb gondolataimat, vagy az általam érdekesnek talált cikkeket/híreket pedig általában <a
+								href="https://plus.google.com/115334992192871078712">Google+</a>-on osztom meg. A jobb bejegyzéseknek kicsatornáztam egy külön blogba, amit a <a href="http://gp.estontorise.hu/" target="_blank">gp.estontorise.hu</a>
+							címen érhetsz el. Ha nem használod a Google+-t, de szeretnél követni, akkor megteheted <a href="https://www.facebook.com/laszlofazekas.googleplus" target="_blank">Facebook</a>-on, vagy <a
+								href="https://twitter.com/TheBojda" target="_blank">Twitteren</a> is. E-mailben pedig a <a id="email" href="#"></a> címen érhetsz el.</p>
+						<script>var mail = document.getElementById("email"); mail.innerHTML = "laszlo" + "." + "fazekas" + "@" + "estotorise." + "hu";</script>
+						<p>
+							<a href="https://twitter.com/TheBojda" target="_blank"><img src="../assets/img/twitter.png" alt="twitter" /></a>
+							<a href="https://github.com/TheBojda" target="_blank"><img src="../assets/img/github.png" alt="github" /></a>
+						</p>
+					</div>
+				</div>
+			</aside><!-- /.sidebar -->
+		</div><!-- /.content -->
+	</div><!-- /.wrap -->
+	<script type="text/javascript">
+		user = 'mailto:' + 'laszlo' + '.' + 'fazekas';
+		document.getElementById('email').href = user + '@' + 'estontorise' + '.hu';
+	</script>
+</body>
+
+</html>
