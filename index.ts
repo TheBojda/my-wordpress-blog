@@ -16,6 +16,9 @@ for (const post of posts) {
     if (post['wp:post_type'] != 'post')
         continue;
 
+    if (!post['pubDate'])
+        continue;
+
     let content: string = template.toString()
     for (const key of Object.keys(post)) {
         content = content.split(`{{${key}}}`).join(post[key])

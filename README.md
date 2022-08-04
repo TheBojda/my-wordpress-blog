@@ -8,31 +8,7 @@ This is a backup of my Wordpress blog. (http://lf.estontorise.hu/)
 
 [Óvatosan a Hibernate-el](https://thebojda.github.io/my-wordpress-blog/posts/10.html)
 
-[PHP karakter kódolás probléma](https://thebojda.github.io/my-wordpress-blog/posts/38.html)
-
 [Decentralizált fájlmegosztás IM rendszerek felett](https://thebojda.github.io/my-wordpress-blog/posts/56.html)
-
-[Újra Firefox](https://thebojda.github.io/my-wordpress-blog/posts/113.html)
-
-[LoveMachine Inc. - nyílt forrás, "szeretet", és egy 21. századi "munkahely"](https://thebojda.github.io/my-wordpress-blog/posts/160.html)
-
-[AngularJS](https://thebojda.github.io/my-wordpress-blog/posts/366.html)
-
-[Demokrácia (én így csinálnám)](https://thebojda.github.io/my-wordpress-blog/posts/461.html)
-
-[Megismerhető-e a valóság ?!](https://thebojda.github.io/my-wordpress-blog/posts/478.html)
-
-[Vajon kimutatható-e ha szimulációban élünk ?!](https://thebojda.github.io/my-wordpress-blog/posts/480.html)
-
-[Mennyire vallás a tudomány ?!](https://thebojda.github.io/my-wordpress-blog/posts/482.html)
-
-[Digitális technikáról gyerekeknek, avagy hogyan építsünk emberi agyat tranzisztorokból](https://thebojda.github.io/my-wordpress-blog/posts/512.html)
-
-[Hol vannak az idegenek? (Fermi paradoxon, relativitás és a technológiai szingularitás)](https://thebojda.github.io/my-wordpress-blog/posts/549.html)
-
-[Kell-e félnünk a mesterséges intelligenciától?!](https://thebojda.github.io/my-wordpress-blog/posts/566.html)
-
-[A konzisztencia gépezet, avagy az időutazás, mint világot összetartó erő](https://thebojda.github.io/my-wordpress-blog/posts/573.html)
 
 [JBoss hibakeresés](https://thebojda.github.io/my-wordpress-blog/posts/14.html)
 
