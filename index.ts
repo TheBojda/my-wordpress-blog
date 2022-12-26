@@ -43,7 +43,8 @@ for (const post of posts) {
     for (const key of Object.keys(post)) {
         content = content.split(`{{${key}}}`).join(post[key])
     }
-    writeFileSync(`archives/${post['wp:post_id']}.html`, content)
+    mkdirSync(`archives/${post['wp:post_id']}`, { recursive: true });
+    writeFileSync(`archives/${post['wp:post_id']}/index.html`, content)
     readme += `[${post.title}](https://thebojda.github.io/my-wordpress-blog/archives/${post['wp:post_id']})\n\n`
 }
 
