@@ -114,16 +114,14 @@
 						Az memória alapú adatbázisok kapcsán kicsit utána néztem a postban felvetett megoldásnak, vagyis hogy a <a href="http://www.jboss.org/file-access/default/members/jbosscache/freezone/docs/3.0.0.GA/pojo/userguide_en/html_single/index.html" target="_blank">JBoss POJO Cache</a>-re építve lehetne-e memória alapú adatbázist készíteni. A POJO Cache dokumentációja alapján elvileg minden adott ehhez. Ahogyan már írtam, clusteres kialakítás esetén a POJO cache önmagában képes a benne tárolt objektum fa transzparens replikálására, méghozzá úgy, hogy csak a változásokat szórja a rendszerben. A cache ezen kívül kezeli az objektum referenciákat, és még tranzakció támogatást is nyújt, tehát valóban minden rendelkezésre áll ahhoz, hogy adatbázis rétegként használjuk. Létezik egy mechanizmus, aminek segítségével a cache-ből kikerülő elemeket perzisztens tárba menthetjük, így a passziválás is megoldott. Ugyanígy létezik mechanizmus a változások mentésére, valamint a cache állapotának perzisztens tárolóból történő visszaállítására. A JBoss POJO Cache tehát elvileg könnyen alkalmassá tehető arra, hogy memória alapú adatbázisként működjön, sőt sokkal egyszerűbben, mint gondoltam. E ellett olyan feture-ök is eleve adottak, mint például a tranzakció kezelés. Egyedül az volt csak fura, hogy hiába kerestem a neten, nem találtam példát ilyen megvalósításra, pedig szinte adja magát a dolog. Már csak egy projekt kellene, ahol a gyakorlatban is ki lehet próbálni a fentieket ...
 					</div>
 					<footer>
-						<p><br/>Originally published at <a href="http://lf.estontorise.hu/archives/24">http://lf.estontorise.hu/archives/24</a> on 2010-02-16 00:53:22.</p>
+						<p><br />Originally published at <a href="http://lf.estontorise.hu/archives/24">http://lf.estontorise.hu/archives/24</a> on 2010-02-16 00:53:22.</p>
 					</footer>
 				</article>
 			</div><!-- /.main -->
 			<aside role="complementary">
 				<div class="span3" style="width: 190px; opacity: 0.6; font-size: 10px;">
-					<div style="background-color: #eee; padding: 5px;"><a rel="author" href="https://plus.google.com/115334992192871078712?rel=author" target="_blank">
-							<img src="../../assets/img/profile.jpg" class="img-rounded" alt="Laszlo Fazekas (TheBojda) - Szabad�sz� Android, PHP, J2EE fejleszt?">
-						</a>
-						<div data-href="//plus.google.com/115334992192871078712" data-rel="author" style="display: none;"></div>
+					<div style="background-color: #eee; padding: 5px;">
+						<img src="../../assets/img/profile.jpg" class="img-rounded" alt="Laszlo Fazekas (TheBojda)">
 						<p style="margin-top: 10px;">
 							Szabadúszó fejlesztőként dolgozom már jópár éve. Főleg J2EE, Android, és PHP projekteket vállalok, de sok más technológiába belekóstoltam már.
 							Bővebb információért olvasd el <a href="../../assets/fazekas_laszlo_cv_hu.pdf">szakmai önéletrajzomat</a>.</p>
