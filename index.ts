@@ -41,8 +41,11 @@ async function main() {
         if (post['wp:post_type'] != 'post')
             continue;
 
+        // only published posts    
         if (!post['pubDate'])
             continue;
+
+        post['content:encoded'] = post['content:encoded'].split(/\r?\n|\r|\n/g).reduce((accumulator: string, currentValue: string) => accumulator + `<p>${currentValue}</p>`)
 
         const content = await ejs.renderFile("template.ejs", { post: post }, { async: true })
         mkdirSync(`archives/${post['wp:post_id']}`, { recursive: true });
