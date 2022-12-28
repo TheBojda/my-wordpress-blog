@@ -8,7 +8,9 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>TrustNet (online bizalom hálózat a megosztáson alapuló gazdaság élénkítése érdekében) - Gondolatok (Fazekas László blogja)</title>
+	<title>
+		TrustNet (online bizalom hálózat a megosztáson alapuló gazdaság élénkítése érdekében) - Gondolatok (Fazekas László blogja)
+	</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="keywords" content="Android, Android fejlesztő, Android programozó, Gondolatok, Fazekas László, PHP, PHP fejlesztő, J2EE, Java, J2EE fejelsztő, szabadúszó, programozó" />
 	<meta name="description" content="Gondolatok - Fazekas László blogja" />
@@ -91,6 +93,15 @@
 			width: 180px;
 		}
 	</style>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-13010823-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'UA-13010823-1');
+	</script>
 </head>
 
 <body class="post-template-default single single-post postid-727 single-format-standard 727">
@@ -108,13 +119,15 @@
 			<div class="span7" style="margin-left: 0px;" role="main">
 				<article class="post-727 post type-post status-publish format-standard hentry category-nincs-kategorizalva">
 					<header>
-						<h1 class="entry-title">TrustNet (online bizalom hálózat a megosztáson alapuló gazdaság élénkítése érdekében)</h1>
+						<h1 class="entry-title">
+							TrustNet (online bizalom hálózat a megosztáson alapuló gazdaság élénkítése érdekében)
+						</h1>
 					</header>
 					<div class="entry-content">
 						A megosztáson alapuló gazdaság (sharing economy) fellendülését az Internet hozta el számunkra, de nem csak azáltal, hogy felületet biztosít ezeknek a szolgáltatásoknak. Van az Internetnek egy ennél sokkal fontosabb szerepe is, ez pedig az "online bizalom" megteremtése. Maga a megosztás tulajdonképpen talán egyidős az emberiséggel. Egy baráti körben teljesen természetes, hogy vendégül látjuk egymást, hogy kölcsönadjuk egymásnak a cuccainkat, hogy elvisszük a barátainkat az autónkkal, stb. Az Internet segítségével ez a baráti kör egy pillanat alatt az egész világra kiterjedt. Ahhoz viszont, hogy ez az egész világméretű közösség valóban "baráti körként" működhessen, arra van szükség hogy megbízzunk egymásban. Tulajdonképpen a személyes ismertséget kell valami módon online helyettesíteni. Erre szolgálnak a megosztó szolgáltatások (AirBnb, Uber, stb.) értékelő rendszerei. Ezek azonban minden esetben az adott szolgáltatásba zártak és kérdéses a megbízhatóságuk is.<p>A probléma megoldására én egy olyan nyílt rendszert képzeltem el, ami egyfajta alkalmazások feletti digitális személyazonosság lenne. Léteznek ilyen rendszerek, pl. az ADA (<a href="https://adatom.hu/" target="_blank" rel="nofollow noopener">https://adatom.hu/</a>). Viszont ezek használata sokszor kicsit nehézkes. Személyes találkozó szükséges hozzájuk vagy a személyazonosító okmányok bescannelése, stb. Az én megoldásom egy bizalmi hálózat. Ha tagja vagyok a hálózatnak és egy személyes ismerősöm (akit valóban személyesen ismerek) is tagja a hálózatnak, akkor bejelölhetjük egymást, így kezeskedve arról, hogy a profil valódi. Tulajdonképpen ugyanaz a rendszer, mint bármilyen más közösségi hálózat esetén, de itt akkor és csak akkor jelöljük meg a másikat, amennyiben őt személyesen ismerjük, és valóban meggyőződtünk róla hogy a profil az adott személyhez tartozik. Egy nagyon jó módszer ennek biztosítására például az, hogy kapcsolat csak mobiltelefon használatával alakítható ki, és csakis akkor, ha az eszközök (GPS koordináták alapján) bizonyos távolságnál közelebb helyezkednek el egymástól. Ahogyan mi bejelöljük az ismerőseinket, úgy ők is bejelölhetik az ő ismerőseiket, akik ez által nekünk is ismerőseinkké válnak áttételesen. A hálózat alapján minden emberhez hozzárendelhetünk egy minősítést (rank). Hasonló ez, mint a pagerank, ami alapján a Google rangsorolja a lapokat. Minél távolabb van tőlünk valaki a hálózatban, annál kisebb számunkra a megbízhatósága, viszont minél több úton lehet hozzá eljutni, annál erősebb. Tehát ha valaki két ismerősömnek is ismerőse, az megbízhatóbban azonosított, mint ha csak egy ismerősöm ismerőse lenne. Magukat a profilokat mindenki annyira töltené ki, amennyire akarja. Nyilván mindenkinek érdemes minél teljesebben kitölteni az adatait, ha azt szeretné, hogy mások megbízzanak benne. Ezeket az adatokat aztán az adott személy ismerősei hitelesíthetnék (valóban ekkor született, valóban itt lakik, valóban ez a Facebook profilja, stb.) E mellett a hálózat bármely tagjának lehetősége lenne rá, hogy értékelje az adott személyt. Persze egy értékelés is csak annyira megbízható, mint a személy, aki adta. Egy ilyen rendszerben nem kell félnünk, hogy mikor nyaralni megyünk, és kiveszünk egy szobát valakitől, később kiderül, hogy kannibál, és valójában csak vacsit rendelt magának, és persze neki sem kell attól tartania, hogy sorozatgyilkosokat lát vendégül. Attól sem kell tartania, hogy a vendégek teljesen leamortizálják a szobát, hiszen egy buli után összehányt szoba letörölhetetlen szégyenfoltot hagy a profilunkon. A rendszer felépítéséből adódóan pedig nem olyan egyszerű új profilhoz jutni. Ha esetleg még megköveteljük valamilyen személyes azonosító (pl. személyigazolvány számból képzett hash) meglétét, akkor szinte lehetetlen. Az adatbázist tárolhatja egy központi szerver, de ez talán túl nagy bizalmat igényelne az adott céggel szemben, tehát jobbnak ígérkezik a blockchain alapú tárolás. Ez esetben egy NameCoinhoz hasonló kialakítást tudnék elképzelni, ahol mondjuk évente fizetünk valami jelképes összeget a profil fenntartásáért, amiből fedezhető a bányászok munkája (nem, a Facebook sem ingyen tárolja a profilunkat, reklámokat dobál nekünk, abból élnek, nem is rosszul). Nagy vonalakban ez az elképzelésem. A mindenki számára nyitott TrustNet, ami megalapozhatja azt a bizalmat, ami a megosztáson alapuló gazdaság alappillére.</p>
 					</div>
 					<footer>
-						<p><br />Originally published at <a href="http://lf.estontorise.hu/archives/695">http://lf.estontorise.hu/archives/695</a> on 2017-06-30 12:32:56.</p>
+
 					</footer>
 				</article>
 			</div><!-- /.main -->

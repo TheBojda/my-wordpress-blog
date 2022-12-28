@@ -8,7 +8,9 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>JBoss hibakeresés - Gondolatok (Fazekas László blogja)</title>
+	<title>
+		JBoss hibakeresés - Gondolatok (Fazekas László blogja)
+	</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="keywords" content="Android, Android fejlesztő, Android programozó, Gondolatok, Fazekas László, PHP, PHP fejlesztő, J2EE, Java, J2EE fejelsztő, szabadúszó, programozó" />
 	<meta name="description" content="Gondolatok - Fazekas László blogja" />
@@ -91,6 +93,15 @@
 			width: 180px;
 		}
 	</style>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-13010823-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'UA-13010823-1');
+	</script>
 </head>
 
 <body class="post-template-default single single-post postid-727 single-format-standard 727">
@@ -108,13 +119,15 @@
 			<div class="span7" style="margin-left: 0px;" role="main">
 				<article class="post-727 post type-post status-publish format-standard hentry category-nincs-kategorizalva">
 					<header>
-						<h1 class="entry-title">JBoss hibakeresés</h1>
+						<h1 class="entry-title">
+							JBoss hibakeresés
+						</h1>
 					</header>
 					<div class="entry-content">
 						Mostanában elég sokat szívtunk néhány hibával egy JBoss-on futó rendszerben. A legtöbb hiba persze fejlesztéskor rögtön szemet szúr, vagy ha mégsem, úgy a log alapján hamar megtalálható az oka, van azonban néhány elég nehezen felderíthető. A legutálatosabb, mikor a nem optimális kód, vagy egy rejtett (akár több metódus híváson keresztül ívelő) végtelen ciklus annyira leterheli a rendszert, hogy az képtelen válaszolni (kvázi DoS-olja azt). PHP esetén van erre egy nagyon egyszerű mechanizmus, ami figyeli, hogy mi mennyi ideig fut, és ha túl sok idő telt el, egyszerűen kilövi. Nem is csoda, hogy a hosting szolgáltatók körében a PHP a leggyakoribb, hiszen erre könnyen lehet biztonságos hosting szolgáltatást építeni (a jogosultságok, memória limitek, idő limitek jó beállításával kiküszöbölhető, hogy a felhasználó megölje a szervert). Ilyen mechanizmust nem találtam JBoss-hoz (Tomcat-hez, mert valójában az intézi a web-es dolgokat), így marad a szerver újraindítása, és a log fájlok bújása.<p></p><p>Az ilyen hibák felderítésére a legegyszerűbb módszer, hogy a JBoss PID-re kiadunk egy kill -3 -at, aminek hatására a Java VM a log-ba hányja az aktuális szálak állapotát stack trace-el. Ilyen kill -3 -ból érdemes többet is nyomni néhány másodperces eltéréssel, hogy később ne csak az utolsó állapotot lássuk a szálaknak, hanem az egyes szálak működését folyamatában (pl. egy több metódusos végtelen ciklust így lehet leginkább kiszűrni). A baj az ilyen thread dump-okkal az, hogy a processzor használatot nem látjuk belőlük, így nem látszik, hogy pontosan melyik szálak próbálják megenni a processzort. Hogy ezt megtudjuk, adjunk ki egy ps -L auxH parancsot, ami az egyes szálak processzorhasználatát mutatja. A log-ot, és a ps eredményét az LWP/nid köti össze. A ps-ben látható LWP a szál egyedi azonosítója, amit hexadecimális formában nid néven a thread dumpban is megtalálunk. Tehát nincs más dolgunk, mint megkeresni a kiugró, extrém magas processzor használatot mutató szálakat, az ezekhez tartozó LWP-ket hexadecimálisra váltani, majd belekeresni a logban, hogy a hozzá tartozó szál mit csinál. Ezzel a módszerrel viszonylag egyszerűen megtalálhatjuk a kód kritikus részeit.</p><p></p><p>Annak idején én külföldi blog-ok alapján szedtem össze ezt a módszert, így gondoltam megosztom magyar nyelven is, hátha mások is hasznát veszik.</p>
 					</div>
 					<footer>
-						<p><br />Originally published at <a href="http://lf.estontorise.hu/archives/14">http://lf.estontorise.hu/archives/14</a> on 2010-02-15 14:57:58.</p>
+
 					</footer>
 				</article>
 			</div><!-- /.main -->

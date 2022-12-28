@@ -8,7 +8,9 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>SimpleRSA - Gondolatok (Fazekas László blogja)</title>
+	<title>
+		SimpleRSA - Gondolatok (Fazekas László blogja)
+	</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="keywords" content="Android, Android fejlesztő, Android programozó, Gondolatok, Fazekas László, PHP, PHP fejlesztő, J2EE, Java, J2EE fejelsztő, szabadúszó, programozó" />
 	<meta name="description" content="Gondolatok - Fazekas László blogja" />
@@ -91,6 +93,15 @@
 			width: 180px;
 		}
 	</style>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-13010823-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'UA-13010823-1');
+	</script>
 </head>
 
 <body class="post-template-default single single-post postid-727 single-format-standard 727">
@@ -108,13 +119,15 @@
 			<div class="span7" style="margin-left: 0px;" role="main">
 				<article class="post-727 post type-post status-publish format-standard hentry category-nincs-kategorizalva">
 					<header>
-						<h1 class="entry-title">SimpleRSA</h1>
+						<h1 class="entry-title">
+							SimpleRSA
+						</h1>
 					</header>
 					<div class="entry-content">
 						Nem tudom hányan próbáltak már Java-ban RSA-val titkosított dokumentumokat PHP-ból olvasni, vagy fordítva, esetleg Java-ban aláírt dokumentumok hitelességét PHP-ból ellenőrizni, de mindenesetre nekem most ilyenre volt szükségem. Naív módon azt hittem, hogy a nyílt kulcsú titkosítás valami egyszerű dolog (mármint programozás szintjén a megfelelő library-k használatával), fogok valami RSA library-t, egyik oldalon elkódolom valami függvénnyel, a másik oldalon kikódolom, és ennyi. Néhány napi Google használat után, elveszve a különböző kulcsformátumok, és certificate-ek között, rá kellett döbbennem, hogy ez az egész mégsem annyira triviális. A gond forrása, hogy a PHP (és amúgy más szkript nyelvek is) az OpenSSL-t használja a titkosításhoz, míg Java esetén ott a Crypto API, aminek viszont nem sok köze van az OpenSSL-hez. Gondoltam keresek valami Java OpenSSL wrappert, de ilyet sem találtam. A gond tulajdonképpeni forrása az volt, hogy a PHP-s titkosításhoz és aláíráshoz PEM fájlból kellett volna olvasni a kulcsokat, ilyen formában viszont sehogyan sem tudtam menteni a Java-ban generált kulcsokat. Az alkalmazás jellege miatt mindenképp Java-ból akartam generálni a kulcspárt, tehát az a megoldás nem jöhetett szóba, hogy openssl-el készítem el a kulcspárt, és majd azt használom PHP és Java esetén is.  Végül a megoldást a <a href="http://www.bouncycastle.org/">BouncyCastle</a> Java library hozta el számomra, hiszen végül itt sikerült PEM fájl kezelő objektumokat találnom. Össze is raktam egy teszt kódot, és csodák csodájára a PHP kód képes volt olvasni a Java-ban generált kulcsokat, visszafejteni a Java-ban titkosított doksikat, és ellenőrizni az aláírások hitelességét.<p></p><p>Mivel nekem is sok segítséget nyújtottak mások leírásai, szinte kötelességemnek éreztem, hogy valamiképp megosszam frissen szerzett tudásomat. Ennek az egyik formája, hogy kódrészleteket közöl az ember (én is sok ilyenekből szedtem össze az RSA-val kapcsolatos tudásomat), én azonban azt tettem, amit eddig is, összeraktam egy kis library-t, amivel nagyon egyszerűen tudunk be/ki kódolni, illetve digitálisan aláírni adatokat. Egyre inkább az a meggyőződésem, hogy az ilyen kis minimál library-k sokkal hasznosabbak, mint a kóddarabok, vagy akárhány részletes leírás, hogy ezt meg azt hogy kell csinálni. Az elkészült library Java és PHP nyelven elérhető, és metódusok szintjén azonos, így elég egyetlen programkönyvtár használatát elsajátítani.</p><p></p><p>A kódot, ahogyan eddig is mindig, feltöltöttem a Google Code-ra, itt elérhető:</p><p><a href="http://code.google.com/p/simplersalibrary/">http://code.google.com/p/simplersalibrary/ </a></p>
 					</div>
 					<footer>
-						<p><br />Originally published at <a href="http://lf.estontorise.hu/archives/127">http://lf.estontorise.hu/archives/127</a> on 2010-10-28 13:11:02.</p>
+
 					</footer>
 				</article>
 			</div><!-- /.main -->

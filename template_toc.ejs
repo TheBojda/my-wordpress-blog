@@ -89,6 +89,15 @@
 			width: 180px;
 		}
 	</style>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-13010823-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'UA-13010823-1');
+	</script>
 </head>
 
 <body class="post-template-default single single-post postid-727 single-format-standard 727">
@@ -105,19 +114,21 @@
 			<div class="span2 hidden-phone hidden-tablet" style="margin-left: 70px;"></div>
 			<div class="span7" style="margin-left: 0px;" role="main">
 				<% for(const post of posts) { %>
-				<article class="post-727 post type-post status-publish format-standard sticky hentry category-nincs-kategorizalva">
-					<header>
-						<h2><a href="<%= `https://thebojda.github.io/my-wordpress-blog/archives/${post.id}` %>"><%= post.title %></a></h2>
-					</header>
-					<div class="entry-summary">
-						<p>
-							<%= post.summary %> …  <a href="<%= `https://thebojda.github.io/my-wordpress-blog/archives/${post.id}` %>">Folytatás</a>
-						</p>
-					</div>
-					<footer>
-					</footer>
-				</article>
-				<% } %>
+					<article class="post-727 post type-post status-publish format-standard sticky hentry category-nincs-kategorizalva">
+						<header>
+							<h2><a href="<%= `https://thebojda.github.io/my-wordpress-blog/archives/${post.id}` %>">
+									<%= post.title %>
+								</a></h2>
+						</header>
+						<div class="entry-summary">
+							<p>
+								<%= post.summary %> … <a href="<%= `https://thebojda.github.io/my-wordpress-blog/archives/${post.id}` %>">Folytatás</a>
+							</p>
+						</div>
+						<footer>
+						</footer>
+					</article>
+					<% } %>
 			</div><!-- /.main -->
 			<aside role="complementary">
 				<div class="span3" style="width: 190px; opacity: 0.6; font-size: 10px;">

@@ -8,7 +8,9 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>jQuery AJAX Form - Gondolatok (Fazekas László blogja)</title>
+	<title>
+		jQuery AJAX Form - Gondolatok (Fazekas László blogja)
+	</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="keywords" content="Android, Android fejlesztő, Android programozó, Gondolatok, Fazekas László, PHP, PHP fejlesztő, J2EE, Java, J2EE fejelsztő, szabadúszó, programozó" />
 	<meta name="description" content="Gondolatok - Fazekas László blogja" />
@@ -91,6 +93,15 @@
 			width: 180px;
 		}
 	</style>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-13010823-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'UA-13010823-1');
+	</script>
 </head>
 
 <body class="post-template-default single single-post postid-727 single-format-standard 727">
@@ -108,13 +119,15 @@
 			<div class="span7" style="margin-left: 0px;" role="main">
 				<article class="post-727 post type-post status-publish format-standard hentry category-nincs-kategorizalva">
 					<header>
-						<h1 class="entry-title">jQuery AJAX Form</h1>
+						<h1 class="entry-title">
+							jQuery AJAX Form
+						</h1>
 					</header>
 					<div class="entry-content">
 						Régóta keresek olyan egyszerű AJAX form megoldást, amit viszonylag fájdalom mentesen a szerver kód megváltoztatása nélkül integrálhatok a webes alkalmazásaimba. A neten többfajta megoldás fellelhető, de mindben közös, hogy az adatok szállítására valami speciális formátumot (pl. JSON) használnak, vagy valamilyen speciális szerver oldali függvénykönyvtárat (pl. XAJAX) igényelnek. Ezek jó megoldások, kímélik a sávszélességet, támogatják a szerver oldalról történő HTML manipulációt, stb., de igazából egyik sem tetszett igazán a szerver oldal "elcsúfítása" miatt. Nekem egyszerűen csak arra lett volna szükségem, hogy a submit gomb megnyomása után ne ugorjon a böngésző a lap elejére és ne kelljen adott esetben hosszú másodpercekig görgetni az egérrel, hogy visszamászunk a lap aljára, mindezt úgy, hogy ne kelljen a szerver oldali kódhoz nyúlni. Nem igazán érdekelt a sávszélesség kímélése, a kigenerálandó felületek számának csökkentése, egyszerűen csak az idegesítő oldalfrissítést akartam megkerülni. Az ember azt gondolná, hogy ez általános probléma és biztos van rá kész megoldás, mégis hosszú keresgélés után sem találtam ilyesmit, így hát úgy döntöttem lefejlesztem. Az eredmény egy néhány soros (jelen formájában 61 lazára formázott sor) JavaScript library lett, ami mostanra jócskán túlmutat eredeti célján.<p></p><p>Az alapötletet a JBoss Seam részét képző Ajax4jsf library adta. Itt szinte minden komponensnek van ajaxos változata, amely rendelkezik egy reRender attribútummal, ahol azt adhatjuk meg, hogy a komponens által végrehajtott metódust követően milyen id-jű mezőket kell frissíteni. Itt transzparens módon valósul meg az ajaxos működés, hisz nem JSON csomagok mászkálnak ide-oda, amikhez feldolgozó logika és nagy adag kliens oldali JavaScript kell, hanem HTML darabok, melyek generálását a keretrendszer oldja meg. Ez tehát egy olyasmi megoldás, amire nekem szükségem volt, a probléma csak az vele, hogy Java/JSF függő. Én egy sokkal általánosabb, keretrendszertől független megoldást szerettem volna (konkrétan PHP-ban akartam használni), lehetőleg minél kevesebb JavaScript-et felhasználva. Az igények, és az ötlet tehát már elég jól körvonalazódott, jöhetett a megvalósítás.</p><p></p><p>A JavaScript mentes megvalósításhoz a jQuery szinte adta magát. Ez egy un. "unobtrusive" JavaScript library, ami azt jelenti, hogy segítségével a JavaScript-et leválaszthatjuk a HTML kódról és CSS szelektorok segítségével "aggathatjuk" rá az eseménykezelőket az egyes elemekre, illetve módosíthatjuk azok attribútumait. Az egész ráadásul mindehhez egy böngészőfüggetlen programozói felületet ad. A lényeg tehát, hogy úgy szkriptelhetjük fel a lapot, hogy közben tiszta marad a HTML kód.</p><p></p><p>Így már majdnem minden adott volt, de kellett még egy kis ötlet amit a progress bar-os fájlfeltöltős JavaScript komponensektől kölcsönöztem. Itt az a trükk, hogy a form target-jét egy hidden iframe-be irányítják. Így a feltöltés elindul ugyan, de az oldal nem frissül. Ilyenkor a JavaScript egy másik szálon is kapcsolódik a szerverhez (a klasszikus XMLHttpRequest-el) és bizonyos időközönként lekérdezi a szervertől a képfeltöltés állapotát. Így képes feltöltés közben oldalfrissítés nélkül mozogni a progress bar.</p><p></p><p>Innen már csak össze kellett rakni a kódot. A <a href="http://jquery.com/" target="_blank">jQuery</a> alapú library létrehozza a rejtett iframe-et, kikeresi azokat a formokat ahol a form class attribútuma ajaxform, majd ezeknél beállítja a target-et és rárak egy kis submit scriptet is a formra. A formon belül egy rejtett input mezőben soroljuk fel azoknak az elemeknek az id-jét, amelyeket a submit gomb megnyomása után frissíteni kell. Mikor a felhasználó megnyomja a submit gombot, a kérés elmegy a szerver felé, az legenerálja az új oldalt, a submit script pedig visszamásolja a megadott id-vel rendelkező elemeket az eredeti HTML-be. Nem túl bonyolult dolog, a hozzá tartozó kód sem az, és tökéletesen megoldja a bejegyzés elején felvetett problémát, tehát a szerver oldali kód megváltoztatása nélkül valósul meg az oldal újratöltése nélküli AJAX-os működés. A megoldás ráadásul teljesen JavaScript mentes (csak a library-t kell betölteni). Mikor a kis programkönyvtár (a formázott kód kényelmesen elfér másfél képernyőn) elkészült, akkor döbbentem csak rá, hogy mennyire szép ez a megoldás, hiszen az eredeti célja mellett rengeteg lehetőség rejlik még benne.</p><p></p><p>Kezdjük ott, hogy az újratöltés nélküli frissítéssel egy csomó mágikusnak tűnő dolog nagyon egyszerűen, JavaScript nélkül megoldható. Gondoljunk például egy portál rendszerre, ahol adminisztrátorként belépve a cikkek alján egy módosítás gombot is látunk. A gombot megnyomva a szöveg "átváltozik" szerkesztővé, ahol módosíthatjuk a tartalmat, majd a változtatások elvégzését követően "visszaváltozik" tiszta szöveggé. Ilyesmihez általában komoly JavaScript-eket használnak kliens oldalon. De hasonló megoldás lehet egy popup, ami a gombot megnyomva ugrik fel, vagy egy nyitható zárható dinamikus (nem JavaScript-es) fa lista, dinamikus táblázatok, stb. Szinte az összes tipikus AJAX-os komponens megvalósítható kliens oldali JavaScript nélkül a szerver oldalon generálva.</p><p></p><p>A másik jópofa lehetőség, ami adja magát, hogy a szerver oldalon kiolvassuk a frissítendő id-ket (emlékezzünk, hogy ezeket egy hidden mezőben adtuk meg, ami természetesen a form elküldésekor átkerül a szerverhez), és egy olyan csonka html kódot generálunk, ami csak az id-kkel megadott részeket tartalmazza. A többi HTML kód generálása tulajdonképpen teljesen felesleges, hisz azok nem kerülnek vissza az eredeti kódba. Így tehát egy olyan megoldásunk van, ami képes ugyan a szerver kód megváltoztatása nélkül is működni, de lehetőséget ad arra is, hogy a szerver kód minimális módosításával sávszélesség és számítási kapacitás kímélő módon működjön, úgy mint más JSON alapú JavaScript igényes megoldások. Tulajdonképpen megfelelően kialakított HTML kód esetén (mindent CSS-ből formázunk, stb.) a mozgatott adattartalom mennyisége nem sokban tér el a JSON-ös változattól, ugyanakkor minimális változtatásra van szükség a szerver oldalon, a kliens oldalon pedig szinte semmire, ráadásul a működése teljesen JavaScript mentes. E mellett a megoldás keretrendszer független és alkalmazása valóban rendkívül egyszerű.</p><p></p><p>A Google Code-on létre is hoztam egy kis projektet a programkönyvtár számára, ami szerintem méltán kaphatja meg a "világ legkisebb AJAX library-je" címet.</p><p></p><p>A link: <a href="http://code.google.com/p/jqueryajaxform/" target="_blank">http://code.google.com/p/jqueryajaxform/</a></p>
 					</div>
 					<footer>
-						<p><br />Originally published at <a href="http://lf.estontorise.hu/archives/47">http://lf.estontorise.hu/archives/47</a> on 2010-05-17 21:40:04.</p>
+
 					</footer>
 				</article>
 			</div><!-- /.main -->

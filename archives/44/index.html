@@ -8,7 +8,9 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>Java Servlet-ek futási idejének limitálása 2. - Gondolatok (Fazekas László blogja)</title>
+	<title>
+		Java Servlet-ek futási idejének limitálása 2. - Gondolatok (Fazekas László blogja)
+	</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="keywords" content="Android, Android fejlesztő, Android programozó, Gondolatok, Fazekas László, PHP, PHP fejlesztő, J2EE, Java, J2EE fejelsztő, szabadúszó, programozó" />
 	<meta name="description" content="Gondolatok - Fazekas László blogja" />
@@ -91,6 +93,15 @@
 			width: 180px;
 		}
 	</style>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-13010823-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'UA-13010823-1');
+	</script>
 </head>
 
 <body class="post-template-default single single-post postid-727 single-format-standard 727">
@@ -108,13 +119,15 @@
 			<div class="span7" style="margin-left: 0px;" role="main">
 				<article class="post-727 post type-post status-publish format-standard hentry category-nincs-kategorizalva">
 					<header>
-						<h1 class="entry-title">Java Servlet-ek futási idejének limitálása 2.</h1>
+						<h1 class="entry-title">
+							Java Servlet-ek futási idejének limitálása 2.
+						</h1>
 					</header>
 					<div class="entry-content">
 						Az előző bejegyzés óta kicsit utánanéztem a FastCGI működésének. Kíváncsi voltam, milyen lehetőségek vannak a halott process-ek kilövésére, stb. Tulajdonképpen a működési logika igen egyszerű. A FastCGI modul előre megadott mennyiségben forkolja a process-t, és ha kérés jön, egy éppen szabad process-nek adja az adatokat feldolgozásra. Beállíthatunk egy request időkorlátot, és ha ezt túllépi a végrehajtás, az adott process halott állapotba kerül. Ekkor azonban maga a process még bennmarad a memóriában. A FastCGI modul megadott időközönként körbenéz, hogy mi újság a process-ekkel, és a halottakat kilődözi, majd új process-ekre cseréli. Ez alapján kicsit elgondolkodtam, hogy talán nem is a Servlet környezet "FastCGI-re erőltetése" az üdvözítő megoldás, hiszen a fenti működési logika a szabvány megoldásokkal is megvalósítható.<p>Az új ötletem, hogy FastCGI helyett Jetty process-eket kellene futtatni. A Jetty egy pici, kompakt, flexibilis Servlet container, így valószínűleg nem fogyasztana többet, mint egy FastCGI-ra épített speciális változat. Az Apache alá mod_jk-val ugyanúgy be lehetne fésülni, mint a FastCGI-t, és a mod_jk loadbalancing lehetőségének hála, indíthatunk több példányt is ugyanúgy, mint FastCGI esetén. És ami a lényeg, megvalósítható egy FastCGI-hez hasonló gyilkoló mechanizmus is. Mikor egy Jetty process nem tud időben kiszolgálni egy kérést, az adatbázisba bejegyezi, hogy halott a státusza. Eztán a FastCGI-hez hasonlóan egy külső process bizonyos időközönként végigfésülné az adatbázist, és ha talál halott Jetty process-t, egyszerűen kilőné azt, majd új példányt indítana. </p><p>A megoldás előnye, hogy viszonylag kis ráfordítással megvalósítható, hiszen nem kell hozzá külön Servlet containert készíteni, ugyanakkor az alkalmazásonkénti több jetty processnek köszönhetően biztosított a magas rendelkezésre állás, valamint a végtelen ciklusok, és hasonló programozási hibákból adódó problémák is kivédhetőek, tehát a FastCGI-hez hasonló, de teljesen szabványos megoldás alakítható ki.    </p>
 					</div>
 					<footer>
-						<p><br />Originally published at <a href="http://lf.estontorise.hu/archives/44">http://lf.estontorise.hu/archives/44</a> on 2010-05-02 15:54:39.</p>
+
 					</footer>
 				</article>
 			</div><!-- /.main -->

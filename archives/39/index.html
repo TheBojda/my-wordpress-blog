@@ -8,7 +8,9 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>PHP fejlesztés Eclipse-el, XAMPP-al és XDebug-al - Gondolatok (Fazekas László blogja)</title>
+	<title>
+		PHP fejlesztés Eclipse-el, XAMPP-al és XDebug-al - Gondolatok (Fazekas László blogja)
+	</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="keywords" content="Android, Android fejlesztő, Android programozó, Gondolatok, Fazekas László, PHP, PHP fejlesztő, J2EE, Java, J2EE fejelsztő, szabadúszó, programozó" />
 	<meta name="description" content="Gondolatok - Fazekas László blogja" />
@@ -91,6 +93,15 @@
 			width: 180px;
 		}
 	</style>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-13010823-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'UA-13010823-1');
+	</script>
 </head>
 
 <body class="post-template-default single single-post postid-727 single-format-standard 727">
@@ -108,13 +119,15 @@
 			<div class="span7" style="margin-left: 0px;" role="main">
 				<article class="post-727 post type-post status-publish format-standard hentry category-nincs-kategorizalva">
 					<header>
-						<h1 class="entry-title">PHP fejlesztés Eclipse-el, XAMPP-al és XDebug-al</h1>
+						<h1 class="entry-title">
+							PHP fejlesztés Eclipse-el, XAMPP-al és XDebug-al
+						</h1>
 					</header>
 					<div class="entry-content">
 						Bár alapvetően Java párti vagyok, weblapfejlesztések esetén mindig vissza-vissza tér a PHP. Nehéz tőle szabadulni, hisz ez a webhosting szolgáltatók által leginkább támogatott rendszer, és olyan pozitív tulajdonságokkal rendelkezik, mint pl. a futási idő maximalizálása (Java esetén máig nem találtam értelmes megoldást arra, hogy mondjuk egy esetleges végtelen ciklus esetén kiüssem az aktuálisan futó szálat). Ezzel szemben a Java típusos nyelv, és nagyon kellemesen lehet benne debug-olni, amit annyira megkönnyíti az ember dolgát, hogy e nélkül már nem is menne a fejlesztés. A legnagyobb gondom a PHP-vel tulajdonképpen pont ez utóbbi feature hiánya volt. Többször nekiestem már a probléma megoldásának, de általában feladtam, mert mindig valami gigszer csúszott a dologba. Ma úgy döntöttem, bepróbálkozok még egyszer, és végre sikerrel jártam. Sikerült egy nagyon kellemes PHP fejlesztőkörnyezetet összelőnöm XAMPP, Eclipse és XDebug segítségével. Remélem ez a kis írás sokaknak segít, hogy hozzám hasonlóan kényelmes, debugolható (!) fejlesztőkörnyezetet állítsanak össze.<p></p><p>A dolog első lépése a <a href="http://www.apachefriends.org/en/xampp.html" target="_blank">XAMPP</a> letöltése. A XAMPP egy összecsomagolt mini fejlesztőeszköz, ami minden szükséges összetevőt tartalmaz egy LAMP fejlesztéshez. Van benne Apache, MySQL, PHP, PhpMyAdmin, és mindez pöccre összelőve. Csak el kell indítgatni a szolgáltatásokat, és már írhatjuk is a PHP kódot. Mindenkinek csak ajánlani tudom, ennél jobb fejlesztőkörnyezettel Windows-ra még nem találkoztam. Az alap igényeket a XAMPP Lite is kielégíti, de érdemes a teljes XAMPP-ot letölteni, hiszen az tartalmazza az xdebug-ot.</p><p></p><p>Ha megvan a XAMPP, a következő lépés az XDebug konfigurálása. Ehhez kicsit módosítani kell a XAMPP-ban található php.ini-t. Az XDebug-hoz szükséges sorok bent vannak, csak ki kell szedni a komment jeleket, és átírni a paramétereket. A következő beállítások kellenek az XDebug bekapcsolásához (persze az elérési utak az adott XAMPP installációnak megfelelően legyenek megadva):</p><p></p><p>zend_extension = "D:\progs\xampp\php\ext\php_xdebug.dll"</p><p></p><p>zend_extension_ts="D:\progs\xampp\php\ext\php_xdebug.dll"</p><p></p><p>xdebug.remote_enable = 1</p><p></p><p>xdebug.remote_handler = "dbgp"</p><p></p><p>xdebug.remote_host = "localhost"</p><p></p><p>xdebug.remote_port = 9000</p><p></p><p>Ha mindent jól csináltunk, akkor az apache újraindítása után a phpinfo-ban megtaláljuk az xdebug-ra vonatkozó részeket. Maga a debuger úgy működik, hogy ha a php értelmező a webszervertől ?XDEBUG_SESSION_START=...&KEY=... paramétereket kap, megpróbál kapcsolódni a 9000-es portra, és ezen keresztül teszi lehetővé a program futásának követését. Többfajta kliens is létezik, de a legjobb az Eclipse fejlesztőrendszerbe épített változat, hiszen az Eclipse fejlesztőkörnyezetnek sem utolsó. Ehhez töltsük le az Eclipse PHP-hez kialakított változatát az <a href="http://eclipse.org/downloads/">http://eclipse.org/downloads/</a> címről. Ez eclipse telepítése után indításkor válasszuk workspace-nek a XAMPP htdocs könyvtárát, így sok későbbi problémától kímélhetjük meg magunkat. Ezt követően a Window/Preferences/PHP/Debug részben válasszuk ki az XDebug-ot. Tulajdonképpen ennyi az egész. Innentől kezdve ha valamelyik php fájlra jobb gombot nyomunk, és kiválasztjuk a Debug As.../Web page opciót, a debugger elindul, és használhatjuk a jól bevált eszközöket. Brakepointokat helyezhetünk el, watch-olhatjuk a változókat, stb. A dolog gyönyörűen működik, és végre elfelejthetjük a var_dump-okkal teletűzdelt PHP kódokat.</p>
 					</div>
 					<footer>
-						<p><br />Originally published at <a href="http://lf.estontorise.hu/archives/39">http://lf.estontorise.hu/archives/39</a> on 2010-04-17 20:10:58.</p>
+
 					</footer>
 				</article>
 			</div><!-- /.main -->

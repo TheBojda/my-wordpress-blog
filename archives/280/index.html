@@ -8,7 +8,9 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>Hogyan készítsünk videós bébiőrt levetett Android telefonunkból ?! - Gondolatok (Fazekas László blogja)</title>
+	<title>
+		Hogyan készítsünk videós bébiőrt levetett Android telefonunkból ?! - Gondolatok (Fazekas László blogja)
+	</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="keywords" content="Android, Android fejlesztő, Android programozó, Gondolatok, Fazekas László, PHP, PHP fejlesztő, J2EE, Java, J2EE fejelsztő, szabadúszó, programozó" />
 	<meta name="description" content="Gondolatok - Fazekas László blogja" />
@@ -91,6 +93,15 @@
 			width: 180px;
 		}
 	</style>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-13010823-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'UA-13010823-1');
+	</script>
 </head>
 
 <body class="post-template-default single single-post postid-727 single-format-standard 727">
@@ -108,13 +119,15 @@
 			<div class="span7" style="margin-left: 0px;" role="main">
 				<article class="post-727 post type-post status-publish format-standard hentry category-nincs-kategorizalva">
 					<header>
-						<h1 class="entry-title">Hogyan készítsünk videós bébiőrt levetett Android telefonunkból ?!</h1>
+						<h1 class="entry-title">
+							Hogyan készítsünk videós bébiőrt levetett Android telefonunkból ?!
+						</h1>
 					</header>
 					<div class="entry-content">
 						Ahogyan az lenni szokott, a kisfiam megszületése után egyre másra jöttek az igények. Elemes hinta, légzésfigyelő, miegymás.  A legutóbbi kütyü pedig, amit a feleségem kinézett a babának egy videós bébiőr, hogy az éjszaka közepén ne kelljen 5 percenként áttipegni, és megnézni, hogy él-e még. Körbenéztünk a boltokban. Ezek olyan 30 000 Ft-tól indulnak, de van 50 meg 100 000 Ft-ért is. Elgondolkodtam, és arra jutottam, hogy nem igaz, hogy informatikus létemre nem tudok egy ilyet összebarkácsolni. Van otthon a fiókban webkamera, levetett notebook, telefonok, stb. így legalább nem csak ott porosodnak feleslegesen. Néhány hétig érlelődött a gondolat, aztán nekiálltam rákeresni a neten, hogy mégis hogyan lehetne összerakni egy ilyet.<p></p><p>Rövid keresgélés után találtam egy <a href="https://play.google.com/store/apps/details?id=com.pas.webcam">IP Webcam</a> nevű programot, ami képes az Android telefon kameraképét kifelé streamelni. A használata nagyon egyszerű. Mivel az alap beállítások megfelelőek, ezért indítás után egyszerűen tekerjük le a listát és nyomjunk a 'Start server' pontra. A program visszadob egy URL-t, amin keresztül elérhető a kamera képe. Kliensként használhatunk böngészőt, vagy videó lejátszó programot (pl. VLC). Mivel amúgy is volt egy elfekvő androidos telefonom, rádugtam töltőre, és felragasztottam a kiságyhoz, így a bébiőr egyik fele meg is volt. Már csak egy androidos kliensre volt szükség, hogy a másik telefonomról rá tudjak nézni a kamerára. Ezt sem volt túl nehéz találni, mivel a program élből ajánl is egyet, egy <a href="https://play.google.com/store/apps/details?id=com.alexvas.dvr">TinyCam Monitor</a> nevű kis alkalmazást. Itt a 'Manage Camera' részben a 'Camera Vendor' pontban ki kell választani az 'IP Webcam'-et, beállítani a 'Hostname'-et, és már látjuk is a kamera képét. A streamelt videókép egész folyamatos, és a hang is nagyon szépen átjön.</p><p></p><p>Hát, így lett fullos bébiőröm kb. fél óra munkával teljesen ingyen ...</p>
 					</div>
 					<footer>
-						<p><br />Originally published at <a href="http://lf.estontorise.hu/archives/280">http://lf.estontorise.hu/archives/280</a> on 2012-07-12 03:46:11.</p>
+
 					</footer>
 				</article>
 			</div><!-- /.main -->

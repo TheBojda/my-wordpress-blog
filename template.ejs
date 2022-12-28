@@ -8,7 +8,9 @@
 
 <head>
 	<meta charset="utf-8">
-	<title><%= post['title'] %> - Gondolatok (Fazekas László blogja)</title>
+	<title>
+		<%= post['title'] %> - Gondolatok (Fazekas László blogja)
+	</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="keywords" content="Android, Android fejlesztő, Android programozó, Gondolatok, Fazekas László, PHP, PHP fejlesztő, J2EE, Java, J2EE fejelsztő, szabadúszó, programozó" />
 	<meta name="description" content="Gondolatok - Fazekas László blogja" />
@@ -91,6 +93,15 @@
 			width: 180px;
 		}
 	</style>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-13010823-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'UA-13010823-1');
+	</script>
 </head>
 
 <body class="post-template-default single single-post postid-727 single-format-standard 727">
@@ -108,13 +119,15 @@
 			<div class="span7" style="margin-left: 0px;" role="main">
 				<article class="post-727 post type-post status-publish format-standard hentry category-nincs-kategorizalva">
 					<header>
-						<h1 class="entry-title"><%= post['title'] %></h1>
+						<h1 class="entry-title">
+							<%= post['title'] %>
+						</h1>
 					</header>
 					<div class="entry-content">
 						<%- post['content:encoded'] %>
 					</div>
 					<footer>
-						<p><br />Originally published at <a href="<%= post['link'] %>"><%= post['link'] %></a> on <%= post['wp:post_date'] %>.</p>
+
 					</footer>
 				</article>
 			</div><!-- /.main -->

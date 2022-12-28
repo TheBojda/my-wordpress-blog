@@ -8,12 +8,13 @@ function truncate(str: string, n: number) {
     return (str.length > n) ? str.slice(0, n - 1) : str;
 }
 
-async function main() {
+const pinned_post_ids = [727, 645];
+
+(async function () {
     const parser = new XMLParser();
     let wp_export = parser.parse(readFileSync('wordpress-export.xml'));
     let posts = wp_export.rss.channel.item;
 
-    const pinned_post_ids = [727, 645]
     let pinned_posts: any[] = []
     let post_list: any[] = []
     for (const post of posts) {
@@ -37,32 +38,26 @@ async function main() {
             }
         }
 
-        // generate post pages
-        if (post['wp:post_type'] != 'post')
-            continue;
+        // generate post page if it's published
+        if (post['wp:post_type'] == 'post' && post['pubDate']) {
+            post['content:encoded'] = post['content:encoded'].split(/\r?\n|\r|\n/g).reduce((accumulator: string, currentValue: string) => accumulator + `<p>${currentValue}</p>`)
 
-        // only published posts    
-        if (!post['pubDate'])
-            continue;
+            const content = await ejs.renderFile("template.ejs", { post: post }, { async: true })
+            mkdirSync(`archives/${post['wp:post_id']}`, { recursive: true });
+            writeFileSync(`archives/${post['wp:post_id']}/index.html`, content)
 
-        post['content:encoded'] = post['content:encoded'].split(/\r?\n|\r|\n/g).reduce((accumulator: string, currentValue: string) => accumulator + `<p>${currentValue}</p>`)
+            const element = {
+                id: post['wp:post_id'],
+                title: post.title,
+                summary: truncate(post['content:encoded'].replace(/<[^>]*>?/gm, ''), 300)
+            }
 
-        const content = await ejs.renderFile("template.ejs", { post: post }, { async: true })
-        mkdirSync(`archives/${post['wp:post_id']}`, { recursive: true });
-        writeFileSync(`archives/${post['wp:post_id']}/index.html`, content)
-
-        const element = {
-            id: post['wp:post_id'],
-            title: post.title,
-            summary: truncate(post['content:encoded'].replace(/<[^>]*>?/gm, ''), 300)
+            if (pinned_post_ids.includes(post['wp:post_id'])) {
+                pinned_posts.push(element)
+            } else {
+                post_list.push(element)
+            }
         }
-
-        if (pinned_post_ids.includes(post['wp:post_id'])) {
-            pinned_posts.push(element)
-        } else {
-            post_list.push(element)
-        }
-
     }
 
     // generate toc
@@ -83,6 +78,4 @@ This is a backup of my Wordpress blog. (http://lf.estontorise.hu/)
     // index.html
     const content = await ejs.renderFile("template_toc.ejs", { posts: merged_posts }, { async: true })
     writeFileSync(`index.html`, content)
-}
-
-main()
+})()

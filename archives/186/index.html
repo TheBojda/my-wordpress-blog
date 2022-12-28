@@ -8,7 +8,9 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>Samsung Galaxy Spica frissítése Android 2.2-re (Froyo-ra) - Gondolatok (Fazekas László blogja)</title>
+	<title>
+		Samsung Galaxy Spica frissítése Android 2.2-re (Froyo-ra) - Gondolatok (Fazekas László blogja)
+	</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="keywords" content="Android, Android fejlesztő, Android programozó, Gondolatok, Fazekas László, PHP, PHP fejlesztő, J2EE, Java, J2EE fejelsztő, szabadúszó, programozó" />
 	<meta name="description" content="Gondolatok - Fazekas László blogja" />
@@ -91,6 +93,15 @@
 			width: 180px;
 		}
 	</style>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-13010823-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'UA-13010823-1');
+	</script>
 </head>
 
 <body class="post-template-default single single-post postid-727 single-format-standard 727">
@@ -108,13 +119,15 @@
 			<div class="span7" style="margin-left: 0px;" role="main">
 				<article class="post-727 post type-post status-publish format-standard hentry category-nincs-kategorizalva">
 					<header>
-						<h1 class="entry-title">Samsung Galaxy Spica frissítése Android 2.2-re (Froyo-ra)</h1>
+						<h1 class="entry-title">
+							Samsung Galaxy Spica frissítése Android 2.2-re (Froyo-ra)
+						</h1>
 					</header>
 					<div class="entry-content">
 						Mindenek előtt köszönet Maczák Balázsnak, aki felhívta a figyelmem az új firmware verzióra. Nélküle nem készült volna el ez a bejegyzés.<p></p><p>No de miért is érdemes firmware-t frissíteni? A Galaxy Spica egy jó ár/érték arányú Androidos belépő telefon. Annak idején, mikor még én vettem az enyémet, olyan 60 000 Ft körül lehetett megkapni (jelenleg olyan 30 000-40 000 Ft körül lehet) 1.5-ös Android firmware-el. Időközben aztán az ember kinövi. Jó lenne magasabb verziós Android, lehetne kicsit gyorsabb, hiányzik a multitouch támogatás, vagy a programok sd kártyára helyezésének lehetősége (nekem ez utóbbi kettő hiányzott leginkább). Ilyenkor az ember első gondolata, hogy cseréljük le a jó öreg Spica-t valami újabb modellre. Pedig sokan nem tudják, milyen tartalékok vannak ebben a kis eszközben. Kis bátorsággal körülbelül fél óra alatt a fenti feature-ök közül mind elérhetővé tehető a telefonon. Igen, a multitouch is! Régebben úgy gondoltam, hogy a Spica-n hardver okokból nem elérhető ez a lehetőség, de egy sima szoftver frissítés után ez is remekül működik. Nézzük hát, mi a frissítés folyamata.</p><p></p><p>Elsőként root-olni kell a telefont, amihez itt (<a href="http://www.addictivetips.com/mobile/root-samsung-galaxy-spica-i5700-with-leshaks-kernel/">http://www.addictivetips.com/mobile/root-samsung-galaxy-spica-i5700-with-leshaks-kernel/</a>) megtalálhatunk minden szükséges kelléket.</p><p><ol></p><p>	<li>Mielőtt bármihez kezdenénk, az sd kártya root könyvtárába másoljuk fel az  LK2-02-1_update.zip állományt.</li></p><p>	<li>Töltsük le az Odin-t innen (<a href="http://cloud.addictivetips.com/wp-content/uploads/android/samsung/galaxy-spica/Odin_v4_03.zip">cloud.addictivetips.com/wp-content/uploads/android/samsung/galaxy-spica/Odin_v4_03.zip</a>).</li></p><p>	<li>Kapcsoljuk ki a telefont, majd a hangerő szabályzó gombot lefelé nyomva és a fényképező gombot nyomva tartva nyomjuk meg hosszan a hívás bontás gombot. Így bekapcsolva a telefont az download módba kerül.</li></p><p>	<li>Az Odin-ban nyomjuk meg a Reset files gombot, majd az ops részbe tallózzuk be a spica_jc3.ops fájlt (ezt az Odin-hoz csomagolva megtaláljuk).</li></p><p>	<li>Bontsuk ki a i5700_LK2-02_PDA.zip állományt, és a tartalmát tallózzuk be a PDA részhez.</li></p><p>	<li>Nyomjuk meg a Start gombot. Ekkor az Odin feltölti a telefonra az új loadert.</li></p><p>	<li>Ha az Odin végzett, a telefonon megjelenik egy menü, ahol az 'Apply any zip from SD' opcióval kiválaszthatjuk az előzőleg oda másolt zip-et.</li></p><p>	<li>Újraindítás után van egy root-olt telefonunk, tehát félig megvagyunk.</li></p><p></ol></p><p>Root-olást követően már könnyedén telepíthetünk új ROM-ot. A Samdroid ROM 2.2-es változatát innen (<a href="http://forum.samdroid.net/f53/samdroidmod-2-2-1-a9-froyo-aosp-i5700-3017/">http://forum.samdroid.net/f53/samdroidmod-2-2-1-a9-froyo-aosp-i5700-3017/</a>) tölthetjük le, de a <a href="http://en.wikipedia.org/wiki/Samsung_i5700">Wikipedia-n</a> találhatunk néhány hasznos linket más ROM-okra. A ROM telepítéséhez végezzük el a következő néhány lépést:</p><p><ol></p><p>	<li>Másoljuk fel a ROM állományt az sd kártyára.</li></p><p>	<li>Indítsuk el a telefont recovery módban a hangerő szabályzót lefelé nyomva, valamint a hívás fogadás és bontás gombokat egyszerre nyomva tartva. Ilyenkor előjön a boot menü, amivel már találkoztunk.</li></p><p>	<li>Ha akarunk, itt készíthetünk backupot a jelenlegi rendszerről, de mivel jó esetben a címlista, a naptár bejegyzések, és a többi hasznos dolog a Google szervereire is le van szinkronizálva, erre sokszor nincs is szükség.</li></p><p>	<li>Van egy Wipe data & cache menüpont, ezzel tisztára törölhetjük a telefon memóriát.</li></p><p>	<li>Válasszuk ki a ROM zip-et az sd kártyáról az Apply menüpont használatával.</li></p><p>	<li>A frissítés utáni reboot, és néhány percnyi várakozás után (4-5x újra fog indulni a telefon, addig hagyjuk békén, ellesz magában) a szépséges új 2.2-es Android UI fogad minket.</li></p><p></ol></p><p>Ennyi az egész. Az egész procedúra körülbelül 15 percig tart, és a végén egy megújult telefon fogad minket. Telepíthetünk alkalmazásokat SD kártyára, használhatjuk a 2 ujjas nagyítást, és a 2.2-es Android virtuális gépébe bekerült JIT-nek köszönhetően sok alkalmazásunk is gyorsabban fog futni (2-3x-os gyorsulás is tapasztalható bizonyos alkalmazások esetén). Szerintem mindenképp megéri ...</p><p></p><p>UPDATE: A fenti leírásnak megfelelően én sikerrel frissítettem a Spica-mat minden probléma nélkül. A hozzászólásokban azonban sokan arra panaszkodnak, hogy megállt a telepítés, vagy más ok miatt nem jártak sikerrel. Sajnos ezen problémák megoldására nincs ötletem, mivel én ilyen problémákba nem ütköztem, és sem a frimware-hez, sem a feltöltő eszközökhöz nincs semmi közöm. Én is idegen nyelvű fórumok alapján végeztem el a telepítést, és ebben a bejegyzésben csak a tapasztalataimat osztottam meg. A legjobb amit tanácsolni tudok, hogy akinek problémája van a telepítéssel, az a samdroid fórumban tegye fel a kérdéseit a fejlesztőknek.</p>
 					</div>
 					<footer>
-						<p><br />Originally published at <a href="http://lf.estontorise.hu/archives/186">http://lf.estontorise.hu/archives/186</a> on 2011-10-14 20:18:19.</p>
+
 					</footer>
 				</article>
 			</div><!-- /.main -->

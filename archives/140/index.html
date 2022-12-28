@@ -8,7 +8,9 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>JSONP és Cross-Site Scripting - Gondolatok (Fazekas László blogja)</title>
+	<title>
+		JSONP és Cross-Site Scripting - Gondolatok (Fazekas László blogja)
+	</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="keywords" content="Android, Android fejlesztő, Android programozó, Gondolatok, Fazekas László, PHP, PHP fejlesztő, J2EE, Java, J2EE fejelsztő, szabadúszó, programozó" />
 	<meta name="description" content="Gondolatok - Fazekas László blogja" />
@@ -91,6 +93,15 @@
 			width: 180px;
 		}
 	</style>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-13010823-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'UA-13010823-1');
+	</script>
 </head>
 
 <body class="post-template-default single single-post postid-727 single-format-standard 727">
@@ -108,13 +119,15 @@
 			<div class="span7" style="margin-left: 0px;" role="main">
 				<article class="post-727 post type-post status-publish format-standard hentry category-nincs-kategorizalva">
 					<header>
-						<h1 class="entry-title">JSONP és Cross-Site Scripting</h1>
+						<h1 class="entry-title">
+							JSONP és Cross-Site Scripting
+						</h1>
 					</header>
 					<div class="entry-content">
 						Aki próbált már JavaScript-ből idegen szerverrel kommunikálni, az valószínűleg belefutott már a Cross-Site Scripting problémakörbe. Röviden arról van szó, hogy biztonsági okokból egy oldalon lévő JavaScript csak az oldalt tartalmazó domain-el képes kommunikálni (onnan bármit letölteni, vagy küldeni oda). Ez bizonyára sok gonoszságtól megvéd minket, mégis vannak helyzetek, mikor jól jönne, ha idegen domainről tudnánk adatokat letölteni. Például RSS feed-et szeretnénk olvasni JavaScript-ből, vagy valami távoli szolgáltatást szeretnénk valami API-n keresztül elérni. A napokban én is egy hasonló problémával találtam szemben magam. Nevezetesen volt két oldalam (mondjuk foo.com és bar.com). Az egyiken leraktam egy cookie-t, amit a másik oldalon szerettem volna kiolvasni, és mindezt JavaScript-ből. Mivel a bar.com oldal nem láthatja a foo.com oldal cookie-jait, ezért ezt csak úgy lehet megoldani, hogy a foo.com kiolvassa a saját cookie-ját, és valahogy átadja ezt a bar.com-nak. A baj csak az, hogy a bar.com-on lévő JavaScript nem tudja semmiképp elérni a foo.com oldalt. Több dologgal próbálkoztam, iframe-el, megpróbáltam a foo.com-ról betölteni a JavaScript-et, stb. de semmi nem vezetett eredményre. Ekkor találtam rá a JSONP-re.<p></p><p>A JSONP igazából egy igen egyszerű kis trükk a fenti probléma megkerülésére. Ha egy ideig szenved vele az ember, valószínűleg egy idő után magától is kitalálja. A JSONP-nek annyi a lényege, hogy úgy adunk át adatokat a foo.com-ról a bar.com-nak, hogy foo.com az átadandó adatokból generál egy JavaScript-et, és ezt a bar.com egy egyszerű script taggal behúzza. Mindebből úgy alakíthatunk ki kétirányú kommunikációt, hogy a kliens URL paramétereket használ az adatok továbbítására, amire a szerver a megfelelő javascript generálásával válaszol. Hogy mindez tisztább legyen, nézzünk egy példát. Tekintsük a fenti problémát, vagyis a foo.com domainről szeretnénk lekérni a cookie megadott nevű mezőjének értékét. Ehhez hozzunk létre egy cookie.php állományt a foo.com domainen, amit a következőképpen paraméterezhetünk: foo.com/cookie.php?cookie_name=<változó neve>&callback=<javascript fv.>. Itt a változó neve ugye egyértelmű, a callback paramétert meg nemsokára megértjük. A cookie.php valahogy így fog kinézni:</p><p><pre class="brush:php"><?php</p><p>$cookie_name = $_GET['cookie_name'];</p><p>$data = array();</p><p>$data[$cookie_name] = $_COOKIE[$cookie_name];</p><p>echo $_GET['callback'] . '(' . json_encode($data) . ');';</p><p>?></p><p></pre></p><p>ha a fenti scriptet cookie_name=test és callback=jsonp_callback paraméterrel hívjuk, az eredmény valami ilyesmi lesz:</p><p><pre class="brush:javascript">jsonp_callback({'test': 'Test cookie value.'});</p><p></pre></p><p>Ez pedig egy teljesen szabványos javascript hívás. Nincs más dolgunk,mint a fenti url-t egy script tag-el behúzni a hívó oldalra:</p><p><pre class="brush:html"><script type="text/javascript" src="http://foo.com/cookie.php?cookie_name=test&callback=jsonp_callback"></script></p><p></pre></p><p>A script tag tartalmát a böngésző azonnal végrehajtja, ami ugye így azt eredményezi, hogy meghívódik a jsonp_callback függvény a {'test': 'Test cookie value.'} paraméterrel. Nincs más dolgunk, mint definiálni a jsonp_callback fv.-t, és kész is vagyunk:</p><p><pre class="brush:javascript">function jsonp_callback(data) {</p><p>alert(data.test);</p><p>}</p><p></pre></p><p>Igazából ennyi az egész. Persze a gyakorlatban általában nem fix paraméterekkel akarunk hívni egy szerver szolgáltatást. A dinamikus paraméterezéshez dinamikusan kell előállítanunk a script tag-eket, ez DOM műveletekkel viszonylag egyszerűen megvalósítható, de van egy még kényelmesebb megoldás, ez pedig a <a href="http://api.jquery.com/jQuery.ajax/">jquery javascript library ajax hívása</a>. Ezzel a megoldással egy egyszerű függvényhívásra van csak szükség, ami valahogy így néz ki:</p><p><pre class="brush:javascript">$.ajax({</p><p>dataType: 'jsonp',</p><p>data: 'cookie_name=test'</p><p>url: 'http://foo.com/cookie.php',</p><p>success: function (data) {</p><p>alert(data.test);</p><p>},</p><p>});</p><p></pre></p><p>Így tehát JQuery használatával, és némi PHP ismerettel már egész kényelmes Cross-Site Scripting megoldást készíthetünk. Akit a JSONP mélyebben érdekel, az utánanézhet a <a href="http://en.wikipedia.org/wiki/JSON#JSONP">wikipediában</a>.</p>
 					</div>
 					<footer>
-						<p><br />Originally published at <a href="http://lf.estontorise.hu/archives/140">http://lf.estontorise.hu/archives/140</a> on 2011-01-10 01:04:14.</p>
+
 					</footer>
 				</article>
 			</div><!-- /.main -->

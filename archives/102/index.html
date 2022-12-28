@@ -8,7 +8,9 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>Programfejlesztés Android-ra - Gondolatok (Fazekas László blogja)</title>
+	<title>
+		Programfejlesztés Android-ra - Gondolatok (Fazekas László blogja)
+	</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="keywords" content="Android, Android fejlesztő, Android programozó, Gondolatok, Fazekas László, PHP, PHP fejlesztő, J2EE, Java, J2EE fejelsztő, szabadúszó, programozó" />
 	<meta name="description" content="Gondolatok - Fazekas László blogja" />
@@ -91,6 +93,15 @@
 			width: 180px;
 		}
 	</style>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-13010823-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'UA-13010823-1');
+	</script>
 </head>
 
 <body class="post-template-default single single-post postid-727 single-format-standard 727">
@@ -108,13 +119,15 @@
 			<div class="span7" style="margin-left: 0px;" role="main">
 				<article class="post-727 post type-post status-publish format-standard hentry category-nincs-kategorizalva">
 					<header>
-						<h1 class="entry-title">Programfejlesztés Android-ra</h1>
+						<h1 class="entry-title">
+							Programfejlesztés Android-ra
+						</h1>
 					</header>
 					<div class="entry-content">
 						Néhány hónapja beszereztem egy Samsung Galaxy Spica-t, azzal a határozott szándékkal, hogy végre megtanulok Android-ot programozni. A jelenlegi tendenciákat figyelve az Android valószínűleg hamarosan a legelterjedtebb mobil platformmá válhat, és az sem elhanyagolandó tény, hogy Java nyelven fejleszthetünk rá, ami (legalábbis szerintem) sokkal barátságosabb, mint a C++ (Symbian), vagy az Objective-C (iPhone). Úgy tervezem, hogy több bejegyzést is írok majd a témában. Ebben a mostaniban azt írom le, hogyan állíthatjuk be a fejlesztőkörnyezetet, és kezdhetjük meg a fejlesztést.<p></p><p>Ha Android fejlesztésre adjuk a fejünket, legjobb választás az Eclipse fejlesztőrendszer használata. Elvileg létezik NetBeans plugin is, de mivel én eddig is Eclipse-et használtam fejlesztésre (még a PHP projektekhez is), ezért soha nem próbáltam. Szóval maradjunk az Eclipse-nél. Én a 3.5-ös <a href="http://www.eclipse.org/galileo/" target="_blank">Galileo</a>-t telepítettem (a cikk írásakor ez volt a legfrissebb Android plugin által támogatott változat). Az Eclipse telepítése után telepítsük az <a href="http://developer.android.com/sdk/eclipse-adt.html" target="_blank">ADT plugint</a>. Ha ez megvan, még szükségünk van az <a href="http://developer.android.com/sdk/installing.html" target="_blank">Android SDK</a>-ra, amit <a href="http://developer.android.com/sdk/index.html" target="_blank">innen</a> tölthetünk le. Ha fent van az SDK, futtassuk az SDK Manager.exe-t (Windows esetén), amivel letölthetjük és telepíthetjük a legfrissebb fejlesztői csomagokat. Ha a fejlesztéshez emulátort használunk, akkor a Virtual Devices fül alatt adjunk hozzá egy virtuális eszközt. Ha ezzel megvagyunk, lépjünk vissza eclipse-be, és Window/Preferences fül alatt keressük ki az Android részt, és állítsuk be az SDK location-t. Ha mindez megvan, rendszerünk készen áll a fejlesztésre.</p><p></p><p>A Package Explorer-ben adjunk hozzá gy Android projektet, állítsuk be az alkalmazás nevét, a package-t és a célrendszert, és kész is az első Android projektünk. A default Android projekt egy önmagában is futtatható Hello World alkalmazás, így nincs más dolgunk, mint elindítani azt a Debug As Android Application opcióval. Ha nincs csatlakoztatva telefon, a rendszer automatikusan az emulátort indítja el. Ha rögtön telefonon szeretnénk tesztelni (én így szoktam), akkor kapcsoljuk be a telefonon a fejlesztői módot. Nálam ez a Beállítások/Alkalmazások/Fejlesztés alatt kapcsolható be az USB-hibakeresés opcióval. Ha bekapcsoltuk, az adatkábellel kössük össze a telefont a PC-vel. Ilyenkor a PC vagy felismeri a telefont (nálam már valahonnan fent volt egy Samsung ADT driver, ami valószínűleg a gyári szoftverrel települt). Ha nincs fent driver, próbálkozhatunk az SDK-ban lévő usb driverrel, ami az usb_driver könyvtárban található. Ha sikerült csatlakoztatni a telefont, újra indítsuk el az alkalmazást a Debug opcióval, és ha minden jól megy, most már az a telefonon fog elindulni. Ez a módszer szerintem sokkal jobb, mint az emulátor használata, hiszen élő környezetben tesztelhetjük a programot, mégis ugyanúgy tudunk debugolni, mint emulátor esetén. Ráadásul a natív környezetnek köszönhetően sokkal gyorsabban is fut az alkalmazás. Egy dolog van még, amit érdemes megtenni. Az Eclipse Window / Show view menüpontjában található a LogCat view, ahová a programból logolhatunk, és ahová a rendszer a hibaüzeneteket küldi. Ha valami nem megy, érdemes egy pillantást vetni ide.</p><p></p><p>Ha további infóra lenne szükség a környezet telepítését illetően, az <a href="http://developer.android.com/sdk/index.html" target="_blank">SDK honlapja</a>-án mindent meg lehet találni.</p><p></p><p>Sok szerencsét minden leendő Android fejlesztőnek!</p>
 					</div>
 					<footer>
-						<p><br />Originally published at <a href="http://lf.estontorise.hu/archives/102">http://lf.estontorise.hu/archives/102</a> on 2010-09-22 00:22:22.</p>
+
 					</footer>
 				</article>
 			</div><!-- /.main -->

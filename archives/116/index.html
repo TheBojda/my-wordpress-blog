@@ -8,7 +8,9 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>jin-template - Gondolatok (Fazekas László blogja)</title>
+	<title>
+		jin-template - Gondolatok (Fazekas László blogja)
+	</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="keywords" content="Android, Android fejlesztő, Android programozó, Gondolatok, Fazekas László, PHP, PHP fejlesztő, J2EE, Java, J2EE fejelsztő, szabadúszó, programozó" />
 	<meta name="description" content="Gondolatok - Fazekas László blogja" />
@@ -91,6 +93,15 @@
 			width: 180px;
 		}
 	</style>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-13010823-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'UA-13010823-1');
+	</script>
 </head>
 
 <body class="post-template-default single single-post postid-727 single-format-standard 727">
@@ -108,13 +119,15 @@
 			<div class="span7" style="margin-left: 0px;" role="main">
 				<article class="post-727 post type-post status-publish format-standard hentry category-nincs-kategorizalva">
 					<header>
-						<h1 class="entry-title">jin-template</h1>
+						<h1 class="entry-title">
+							jin-template
+						</h1>
 					</header>
 					<div class="entry-content">
 						Már több webes projekt van a hátam mögött, de igazából még nem sikerült olyan template rendszert találnom, ami maradéktalanul kielégítené az igényeimet. Az egyik legnagyobb problémát az szokta jelenteni, hogy a HTML designt öcsém készíti el rendszerint Dreamweaver-el, és a későbbi karbantartás miatt meg is kell őriznünk a HTML tisztaságát. A legtöbb template rendszer speciális tag-eket, vagy más extra blokkokat használ, ami rendszerint teljesen tönkreteszi a HTML forrást. Az ilyen tag-ekkel teletűzdelt HTML már nem úgy jelenik meg a böngészőben vagy a szerkesztőben, ahogyan az eredmény, így a vizuális szerkesztés a standard HTML-es eszközökkel (pl. az általunk is használta Dreamwaver) nagyon nehézkes. A problémát általában úgy hidaltam át, hogy a template motornak szóló parancsokat HTML kommentekben helyeztem el, és egy előfeldolgozó után eresztettem rá a template motort. Ez a megoldás egész hatékonynak bizonyult, de még így sem voltam maradéktalanul elégedett. Az a gond ezekkel a template motorokkal, hogy szűkös a tudásuk. Ez a szűkös tudás persze az esetek nagy részében elegendő is, de ha esetleg olyan igényünk van, amit a template rendszer alapból nem támogat, sokszor igen nehézkes kiterjeszteni azt. Smarty plugineket kell gyártanunk, saját taglib-eket, stb. De miért kell ennek ilyen macerásnak lennie? Valójában arról van szó, hogy a template rendszer egy primitív programozási nyelvet definiál, és ezt kell kiterjesztenünk. Innen jött az ötlet, hogy a template rendszer speciális nyelve helyett használjuk a jól megszokott programozási nyelvet, és ezzel tulajdonképpen bontsuk ketté a template-et egy tiszta HTML forrásra, és egy felület generáló kódra (view building logic). Ez volt a jin-template alapötlete.<p></p><p>A rendszer maga nagyon egyszerű, néhány osztályból áll az egész.  A forrás HTML-ben kommentekkel jelölhetünk ki blokkokat, majd a kódból ezen blokkok tartalmát használhatjuk fel, és cserélhetjük ki. Ez alapján tehát egy fórum motor bejegyzéseinek listája úgy áll elő, hogy definiálunk egy bejegyzés konténert, és egy bejegyzés elemet. Ezt követően kódból előszedjük a bejegyzés elemet, feltöltjük a megfelelő adatokkal, majd a bejegyzéseket behelyezzük a bejegyzés konténerbe. Ezzel a módszerrel a HTML forrásokat megtarthatjuk eredeti formájukban (csak néhány komment hozzáadása szükséges), a tartalom generálásához pedig felhasználhatjuk az implemetáló programozási nyelv teljes eszközkészletét.</p><p></p><p>Az elkészült rendszert feltöltöttem a Google Code-ra, ahol a működést egy egyszerű példán szemléltettem is:</p><p><a href="http://code.google.com/p/jin-template/" target="_blank">http://code.google.com/p/jin-template/ </a></p>
 					</div>
 					<footer>
-						<p><br />Originally published at <a href="http://lf.estontorise.hu/archives/116">http://lf.estontorise.hu/archives/116</a> on 2010-10-12 16:38:45.</p>
+
 					</footer>
 				</article>
 			</div><!-- /.main -->

@@ -8,7 +8,9 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>Üzenet alapú programozás - Entourage és ErraiBus - Gondolatok (Fazekas László blogja)</title>
+	<title>
+		Üzenet alapú programozás - Entourage és ErraiBus - Gondolatok (Fazekas László blogja)
+	</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="keywords" content="Android, Android fejlesztő, Android programozó, Gondolatok, Fazekas László, PHP, PHP fejlesztő, J2EE, Java, J2EE fejelsztő, szabadúszó, programozó" />
 	<meta name="description" content="Gondolatok - Fazekas László blogja" />
@@ -91,6 +93,15 @@
 			width: 180px;
 		}
 	</style>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-13010823-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'UA-13010823-1');
+	</script>
 </head>
 
 <body class="post-template-default single single-post postid-727 single-format-standard 727">
@@ -108,13 +119,15 @@
 			<div class="span7" style="margin-left: 0px;" role="main">
 				<article class="post-727 post type-post status-publish format-standard hentry category-nincs-kategorizalva">
 					<header>
-						<h1 class="entry-title">Üzenet alapú programozás - Entourage és ErraiBus</h1>
+						<h1 class="entry-title">
+							Üzenet alapú programozás - Entourage és ErraiBus
+						</h1>
 					</header>
 					<div class="entry-content">
 						Az utóbbi időben az ActiveMQ kapcsán kicsit mélyebben utánaolvastam az üzenet alapú rendszereknek. Nem annyira az ESB megoldások érdekeltek, hanem inkább az, hogy léteznek-e üzenet alapú web-es keretrendszerek. A közelmúltban 2 nagyon jó projektet is találtam. Ezek a címben is szereplő <a href="http://www.appcelerator.com/products/entourage/" target="_blank">Entourage</a> és <a href="http://www.jboss.org/errai/ErraiBus" target="_blank">ErraiBus</a>.<p></p><p>Az Entourage az Appcelerator egyik alprojektje. Maga az <a href="http://www.appcelerator.com/" target="_blank">Appcelerator</a> egy olyan keretrendszer, melynek segítségével mobil és desktop alkalmazásokat készíthetünk HTML és JavaScript segítségével. Maga a futtató környezet egy beágyazott böngésző, valamint egy általános API gyűjtemény, amin keresztül JavaScript-ből hívhatóak az adott platform natív funkciói. Így ha egyszer összeraktuk a HTML/Javascript alkalmazást, azt minden változtatás nélkül futtathatjuk Android telefonokon, IPhone-on, és készülhet belőle desktop alkalmazás is. Igazából a rendszer önnmagában is megérdemelne egy saját post-ot, így többet nem is mondok róla, inkább az Entourage-re koncentrálok. Az Entourage egy JavaScript library, amelynek alapja egy üzenet sor (message queue). Az üzenet sorba üzeneteket rakhatunk be JavaScript-ből, illetve funkciókat ültethetünk rá egy-egy üzenetre. Ez így önmagában nem nagy dolog, az izgalmas igazából az, hogy a keretrendszer mi mindent ki tud hozni ebből az egyszerű architektúrából.</p><p></p><p>Az Entourage üzenetsorra épül az <a href="http://doc.appcelerator.org/expressions:start" target="_blank">Entourage Expressions</a>, ami tulajdonképpen egy HTML-be ágyazható DSL, aminek segítségével JavaScript nélkül valósíthatunk meg AJAX-os működést. Egyszerűen az adott HTML tag-et kell ellátnunk egy</p><p><pre> on="[condition] then [action]"</pre></p><p>attribútummal. A condition rész tulajdonképpen egy esemény/üzenet az üzenet sorból, amit vagy mi tehetünk oda JavaScript segítségével, vagy a felhasználótól jöhet pl. click, hover, stb. Az action pedig ugyanúgy lehet egy újabb esemény küldése, vagy pedig valamilyen előre definiált működés pl. class attribútum cseréje, stb. Ezzel az egyszerű rendszerrel már eleve nagyon sok mindent meg lehet valósítani, mindezt JavaScript programozás nélkül egyszerű attribútumok használatával.</p><p></p><p>A következő szint az <a href="http://doc.appcelerator.org/ui:start" target="_blank">Entourage UI</a>, ami tulajdonképpen egy az alsóbb szintekre épülő widget gyűjtemény. Itt egy control attribútum hozzáadásával definiálhatjuk a widget típusát és paramétereit, és annak szerkezetét általában a tag-ben szereplő HTML kód határozza meg (pl. ul/li tagok egy lista esetén). Ezzel az eszközzel már tulajdonképpen teljes AJAX-os felhasználói felületek építhetőek némi HTML tudással JavaScript ismerete nélkül.</p><p></p><p>Az utolsó komponens a <a href="http://doc.appcelerator.org/services:start" target="_blank">Service Brokers</a>, ami nekem a leginkább tetszett. A Service Broker-ek segítségével tulajdonképpen teljesen transzparens módon hozzákapcsolhatjuk a szerver oldali kódot az Ertourage alkalmazáshoz. A megoldás mindössze annyi, hogy a message queue-t úgy konfiguráljuk, hogy bizonyos üzeneteket a szerver felé továbbítson. JavaScript oldalról ez teljesen transzparens módon történik, hiszen ugyanúgy tudunk üzenetet küldeni a szerver felé, mint egy másik helyi komponens felé, ráadásul az egyszerű protokollnak köszönhetően szinte akármilyen programozási nyelven (Java,.NET, PHP, Python, stb.) és környezetben (Spring, Google App Engine, Pylons, stb.) készülhet a szerver oldal. Összességében tehát egy olyan rendszert kapunk, ahol - ha megelégszünk az alap készlettel -, JavaScript nélkül fejleszthetünk webalkalmazásokat úgy, hogy a szerver oldali keretrendszer teljesen szabadon választható.</p><p></p><p>A másik rendszer, ami az Entourage-hez hasonlóan üzenetkezelésen alapul, a JBoss egyik alprojektje, az <a href="http://www.jboss.org/errai/ErraiBus" target="_blank">ErraiBus</a>. Az ErraiBus egy teljesen Java alapú rendszer. A rendszer kliens oldalát GWT-vel készíthetjük el, a szerver oldal futtatásához pedig valamilyen Java Servlet Container szükséges. A két oldal között egy üzenetsor segítségével kommunikálhatunk, tulajdonképpen ezt hívjuk ErraiBus-nak. Ha az előző megoldással hasonlítjuk össze, úgy hátrányának az mondható, hogy szorosan kötődik a Java nyelvhez (a GWT és a szerver oldal miatt is), ugyanakkor az előző light weight megoldáshoz képest ez igazi hard core megvalósítás, ugyanis az üzenetsor comet kapcsolaton keresztül működik, így tiszta kétirányú kommunikáció lehetséges. Nincs szükség külön poll-ozásra, és hasonló trükkökre, ugyanazzal az egyszerűséggel küldhetünk a szerverről a kliens oldalra, mint fordítva. Ez az architektúra tehát valóban real-time alkalmazásokat tesz lehetővé. Ha ehhez hozzágondolom, hogy <a href="http://code.google.com/p/quake2-gwt-port/" target="_blank">GWT-ben már Quake-et is írtak</a>, akkor látható, hogy egy ilyen rendszerrel a lehetőségek száma szinte végtelen. A transzparens működést pedig itt is az üzenet sor alkalmazása hozta.</p><p></p><p>A fentiek alapján úgy látom, hogy az üzenet alapú rendszerek előtt még nagy jövő áll, és sok esetben jelenthetnek nagyon kényelmes megoldást heterogén környezetben. Szerver oldalon az ESB és az ActiveMQ, kliens szerver kapcsolat esetén pedig az Entourage és ErraiBus jellegű alkalmazások. Én személy szerint szívesen látnék valamilyen egységes service bus megoldást, ami ezen rendszerek előnyeit egyesíti, tehát a buszra ugyanúgy "aggathatnánk" kliens oldali GWT alkalmazásokat, Appletteket, Flex, JavaScript, stb. alkalmazásokat, mint szerver oldali Java, PHP, .NET, stb. feldolgozókat, mindig az adott igényeknek megfelelően, sőt egy ilyen rendszerben sokkal szabadabban mozgathatnánk az egyes komponenseket, így ugyanazt a rendszert használhatnánk desktop környezetben (minden komponens a gépre kerül), webes, vagy mobil környezetben (bizonyos komponensek a szerveren maradnak).</p>
 					</div>
 					<footer>
-						<p><br />Originally published at <a href="http://lf.estontorise.hu/archives/54">http://lf.estontorise.hu/archives/54</a> on 2010-06-08 15:06:02.</p>
+
 					</footer>
 				</article>
 			</div><!-- /.main -->

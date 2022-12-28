@@ -8,7 +8,9 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>WordPress - Gondolatok (Fazekas László blogja)</title>
+	<title>
+		WordPress - Gondolatok (Fazekas László blogja)
+	</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="keywords" content="Android, Android fejlesztő, Android programozó, Gondolatok, Fazekas László, PHP, PHP fejlesztő, J2EE, Java, J2EE fejelsztő, szabadúszó, programozó" />
 	<meta name="description" content="Gondolatok - Fazekas László blogja" />
@@ -91,6 +93,15 @@
 			width: 180px;
 		}
 	</style>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-13010823-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'UA-13010823-1');
+	</script>
 </head>
 
 <body class="post-template-default single single-post postid-727 single-format-standard 727">
@@ -108,13 +119,15 @@
 			<div class="span7" style="margin-left: 0px;" role="main">
 				<article class="post-727 post type-post status-publish format-standard hentry category-nincs-kategorizalva">
 					<header>
-						<h1 class="entry-title">WordPress</h1>
+						<h1 class="entry-title">
+							WordPress
+						</h1>
 					</header>
 					<div class="entry-content">
 						Sikeresen összelőttem a WordPress engine-t. A telepítése meglepően egyszerű volt, a szerverünkön ugyanis biztonsági okokból néhány PHP függvényt letiltottunk, így eddig szinte minden portálrendszernél bele kellett nyúlni egy picit a kódba. Nos, a WP az első kivétel. Letöltöttem, felpakoltam FTP-n, beállítottam az adatbázist, és már ment is. Minimális hozzáértéssel bárki megcsinálja, ami nagy pozitívum a szememben.<p></p><p>A rendszer testreszabása sem okozott túl nagy problémát. Az alap design nem igazán tetszett, így nekiálltam keresni valami témát. Végül is az iNove-ra esett a választás. Bár ez sem tökéletes, talán ez illeszkedik leginkább az igényeimhez. A későbbiekben persze lehet, hogy öcsivel nekiállunk, és készítünk egy új témát, de ehhez még hiányzik a megfelelő késztetés, úgyhogy ez marad.</p><p></p><p>A következő dolog, amit mindenképp be akartam állítani, az az RSS csatornák követése. Erre FeedBurner-t használok, mint mindenki. Ez kb. a Google Analytics (a FeedBurner is a Google-é) RSS-ekhez való változata. A beállítása elég egyszerű: megadjuk az RSS forrásunk URL-jét, a FeedBurner pedig ad egy másikat. Ezt az új URL-t kell beállítani a hírcsatornákhoz, hogy bárki aki feliratkozik, ezen keresztül tegye. Ehhez van egy FD Feedburner nevű bővítmény. Itt annyi a trükk, hogy a sima kérdőjeles URL-ekkel nem működik, úgyhogy ha használni akarjuk, át kell állítanunk a bejegyzések URL-jét valami szebb formára. Ehhez a szerver oldalon .htaccess és mod_rewrite támogatás kell. Ha ez nincs meg, valamit hackelni kell a bővítményen. Mondjuk WP-ben ez sem túl bonyolult, hiszen beépített szerkesztő van az admin felületen a bővítmények php fájljaihoz.</p><p></p><p>Amit még nagyon szerettem volna, az egy "Ezt olvastam mostanában" widget a jobb oldalra. Ide akarom gyűjteni az általam érdekesnek gondolt cikkeket/oldalakat. A web ilyen és ehhez hasonló módon való szűrése szerintem egyre fontosabb, hiszen ebben a hatalmas információtengerben egyre nehezebb megtalálni a valódi gyöngyszemeket. Rövid keresgélés után végül a delicious mellett döntöttem. Ez egy nagyon kellemes kis szolgáltatás. Van hozzá egy kellemes kis Firefox plugin, amivel az aktuális oldal egy kattintásra bekerül a megosztott könyvjelzőim közé, amit aztán RSS feed-en keresztül el is érhetek. A WordPress-ben pedig van RSS widget, így néhány kattintással meg is lett a menüpont.</p><p></p><p>Amit még szerettem volna, az a szokásos social bookmarking csík alulra. Itt a legjobb megoldásnak a Light Social-t találtam. Egy kattintással lehet bookmarkolni az oldalt. Itt szerintem létfontosságú az egyszerűség. Gondolkodtam még a ShareThis szolgáltatáson, de végül elvetettem, mert ott kettőt kell kattintani, és el bírom képzelni, hogy valaki egy kattintásra még hajlandó, de kettőre már lusta. A plugin szerkesztőben láttam, hogy a Light Social kódja milyen egyszerű, úgyhogy gyorsan készítettem még három ikont, egy iwiw-et és egy startlapot (ha már magyar blogról van szó), és egy mail-t.</p><p></p><p>Ezzel így kb. meg is volt az alapbeállítás. Még egy Google Analytics hiányzik, de ez sem lehet több néhány percnél. Ahhoz képest, hogy saját engine fejlesztését fontolgattam, kb. 1 óra alatt lett egy szinte minden igényemet kielégítő blogom. Nem rossz. Nagy piros pont a WordPress-nek. (No meg annak a jó néhány webes szolgáltatásnak, amiket felhasználtam.)</p>
 					</div>
 					<footer>
-						<p><br />Originally published at <a href="http://lf.estontorise.hu/archives/8">http://lf.estontorise.hu/archives/8</a> on 2010-02-14 12:04:55.</p>
+
 					</footer>
 				</article>
 			</div><!-- /.main -->
