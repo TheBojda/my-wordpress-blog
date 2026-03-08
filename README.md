@@ -2,6 +2,9 @@
 # my-wordpress-blog
 This is a backup of my Wordpress blog. (http://lf.estontorise.hu/)
 
+[Új személyes oldalam (angolul)](https://thebojda.github.io)
+
+[A szimulált valóságról szóló könyvem hivatalos oldala](https://simulatedrealitybook.com/)
 
 [Mediumra költöztem](https://thebojda.github.io/my-wordpress-blog/archives/727)
 
